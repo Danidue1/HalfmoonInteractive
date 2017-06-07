@@ -1,0 +1,56 @@
+#map {
+    width: 100%;
+    height: 400px;
+    /*margin: 10px auto;*/
+    border: 1px solid #3d3d3d;
+  }
+
+/*Custom navbar class*/
+/*over all nav bar*/
+.navbar-custom {
+    background-color: #3d52c8;
+    /*color: #ffffff;*/
+    border-radius: 0;
+    margin-left:-10px;
+    margin-right: -10px;
+    font-family: 'Work Sans', sans-serif;
+    /*margin-top: -4em;*/
+    height: 100px;
+
+}
+
+
+/*"Help" Link Style*/
+.navbar-custom .navbar-nav>li>a {
+    color: #fff;
+    font-size: 1em;
+    margin-top: -10px;
+    font-family: 'Quattrocento', serif;
+    font-style: italic;
+}
+
+/*"Town of Halmoon" link style*/
+.navbar-custom .navbar-nav>.active>a {
+    color: #fff;
+    background-color: transparent;
+    margin-top: -10px;
+    font-family: 'Quattrocento', serif;
+    font-style: italic;
+}
+
+.navbar-custom .navbar-nav>li>a:hover, .navbar-custom .navbar-nav>li>a:focus, .navbar-custom .navbar-nav>.active>a:hover, .navbar-custom .navbar-nav>.active>a:focus, .navbar-custom .navbar-nav>.open>a {
+    text-decoration: none;
+    background-color: #6e76ed;
+}
+
+.navbar-custom .navbar-brand {
+    color: #eeeeee;
+}
+
+.navbar-custom .navbar-toggle {
+    background-color: #eeeeee;
+}
+
+.navbar-custom .icon-bar {
+    background-color: #6e76ed;
+}
