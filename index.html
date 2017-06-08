@@ -2,89 +2,99 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- <link rel="icon" href="../../favicon.ico"> -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width"> -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- <link rel="icon" href="../../favicon.ico"> -->
 
-    <title>Halfmoon Interactive Web Map</title>
+	<title>Halfmoon Interactive Web Map</title>
 
-    <!-- possible fonts to use -->
-    <link href="https://fonts.googleapis.com/css?family=Quattrocento" rel="stylesheet" type="text/css">
-    <!-- font-family: 'Quattrocento', serif; -->
+	<!-- possible fonts to use -->
+	<link href="https://fonts.googleapis.com/css?family=Quattrocento:700" rel="stylesheet" type="text/css">
+	<!-- font-family: 'Quattrocento', serif; -->
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:700" rel="stylesheet">
+	<!-- font-family: 'Work Sans', sans-serif; -->
+	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+	<!-- font-family: 'Quicksand', sans-serif; -->
+	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+	<!-- font-family: 'Lora', serif; -->
+	<link href="https://fonts.googleapis.com/css?family=Proza+Libre" rel="stylesheet">
+	<!-- font-family: 'Proza Libre', sans-serif; -->
 
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans:700" rel="stylesheet">
-    <!-- font-family: 'Work Sans', sans-serif; -->
-    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    <!-- font-family: 'Quicksand', sans-serif; -->
-    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
-    <!-- font-family: 'Lora', serif; -->
+	<!-- Bootstrap core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom styles for this webmap -->
+	<link href="css/webviewer.css" rel="stylesheet">
+	<!--Leaflet Custom Styles-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+  <!-- do I need to add both leaflet AND mapbox CSS or just MapBox? -->
+  <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.css' rel='stylesheet' />
+	<!-- <script type="text/javascript" src="assets/leaflet-0.7.1/plugins/esri-leaflet-v0.0.1-beta.3/esri-leaflet.js"></script> -->
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/webviewer.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
 <body>
-
-    <nav class="navbar navbar-custom">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">...
+	<!-- <header role="banner">
+   			 <h1>Halfmoon Interactive Webviewer</h1> -->
+	<nav class="navbar navbar-custom navbar-fixed-top">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">...
     </button>
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand">Town of Halfmoon</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#help">Help</a></li>
-                <li class="active"><a href="#">Town of Halfmoon Website</a></li>
-            </ul>
-        </div>
-        <!--/.nav-collapse -->
-        </div>
-    </nav>
+			<span class="sr-only">Toggle navigation</span>
+			<button type="button" class="btn btn-default">
+  			<span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+				</button>
 
-    <div class='col col--12 col--9-ml h180 h-full-ml'>
-              <div id="map" class='viewport-twothirds viewport-full-ml'></div>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<div class="navbar-brand">
+				<img alt="Brand" src="graphics/logo2.png" class="img-responsive" alt="Responsive image">
+				<p>Town of Halfmoon</p>
+			</div>
+		</div>
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#help">Help</a></li>
+				<li class="active"><a href="http://www.townofhalfmoon-ny.gov/">Town of Halfmoon Website</a></li>
+			</ul>
+		</div>
+		<!--/.nav-collapse -->
+		</div>
+	</nav>
 
 
-    <!-- Bootstrap core JavaScript
+	<div class='col col--12 col--9-ml h180 h-full-ml'>
+		<div id="map" class='viewport-twothirds viewport-full-ml'></div>
+	</div>
+
+	<!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="jquery.min.js"><\/script>')
-    </script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/simple-statistics@2.5.0/dist/simple-statistics.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
-      <script src='js/app.js'></script>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+		window.jQuery || document.write('<script src="jquery.min.js"><\/script>')
+	</script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <!-- <script src="http://d3js.org/topojson.v1.min.js"></script> -->
+  <script src="http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+  <!-- <script src="https://unpkg.com/esri-leaflet@2.0.8"></script>
+     <script src="https://unpkg.com/esri-leaflet-renderers@2.0.6"></script> -->
+	<script src='js/app.js'></script>
 </body>
 
 </html>
