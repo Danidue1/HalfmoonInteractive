@@ -99,10 +99,15 @@ header {
     background-color: #6e76ed;
 }
 
-.btn {
-    font-size: 1.5em;
-    color: white;
-    background: 0;
-    border: 0;
-    float: right;
+.navbar-nav {
+  font-size: 1em;
+  margin: -5px;
+
+}
+.btn .glyphicon {
+  margin-right: 8px;
+}
+
+.btn.btn-icon .glyphicon {
+  margin-right: 0;
 }
