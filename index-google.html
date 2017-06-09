@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>google image test</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <style>
+        body, #map {
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            width: 100%;
+        }
+    </style>
+  </head>
+  <body>
+
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAscHqPt0DTdXAKvMji43vC5Yazka0_-AU" async defer></script>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
+    <script>
+
+    var map = L.map('map', {
+        center: [41, -94],
+        zoom: 4,
+        minZoom: 4
+    });
+
+    var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3']
+    }).addTo(map);
+
+
+    </script>
+  </body>
+</html>
