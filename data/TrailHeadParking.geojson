@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Id": 0, "Name": "Trailhead Parking" }, "geometry": { "type": "Point", "coordinates": [ -73.746499432436394, 42.919321497661905 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "Trailhead Parking" }, "geometry": { "type": "Point", "coordinates": [ -73.676869725078888, 42.837200629762876 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "Trailhead Parking" }, "geometry": { "type": "Point", "coordinates": [ -73.760385019533686, 42.795531046104053 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "Trailhead Parking" }, "geometry": { "type": "Point", "coordinates": [ -73.738186746315606, 42.820953279325842 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "Trailhead Parking" }, "geometry": { "type": "Point", "coordinates": [ -73.726413709516692, 42.882459467865132 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "Trailhead Parking" }, "geometry": { "type": "Point", "coordinates": [ -73.77418817795666, 42.913529432285877 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "Trailhead Parking" }, "geometry": { "type": "Point", "coordinates": [ -73.710555362165195, 42.866024780664929 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": null }, "geometry": { "type": "Point", "coordinates": [ -73.683552217635651, 42.86023744839455 ] } }
+]
+}
