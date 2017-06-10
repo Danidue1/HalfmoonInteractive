@@ -24,7 +24,7 @@ header {
 
 .navbar-fixed-top {
     background-color: #3d52c8;
-    height: 80px;
+    height: 85px;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -111,4 +111,25 @@ header {
 
 .btn.btn-icon .glyphicon {
   margin-right: 0;
+}
+/*.custom-popup .leaflet-popup-content-wrapper {
+
+		/*background: white;
+		color: black;
+		font-size: 12px;
+		line-height: 10px;
+		padding: 1px*/
+	/*}
+	.custom-popup .leaflet-popup-tip-container {
+		width: 5px;
+		height: 15px;
+	}*/
+
+.nav .navbar-nav {
+	padding: 0;
+
+}
+
+.nav .navbar-nav a {
+
 }

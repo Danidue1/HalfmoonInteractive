@@ -8,9 +8,9 @@
 	<!-- <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width"> -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<!-- <link rel="icon" href="../../favicon.ico"> -->
+	<meta name="Town of Halfmoon public facing web viewer" content="">
+	<meta name="Danielle Bargovic" content="">
+	<link rel='shortcut icon' href='graphics/DoxyFav3.ico' type='image/x-icon' />
 
 	<title>Halfmoon Interactive Web Map</title>
 
@@ -29,8 +29,6 @@
 </head>
 
 <body>
-	<!-- <header role="banner">
-   			 <h1>Halfmoon Interactive Webviewer</h1> -->
 	<nav class="navbar navbar-custom navbar-fixed-top">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -49,7 +47,7 @@
         <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
       <ul class="nav navbar-nav">
 
-        <li class="dropdown">
+        <li class="dropdown" style="margin-left:20px;">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Share <span class="caret"></span><span style="font-size:25px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-send"></span></a>
           <ul class="dropdown-menu forAnimate" role="menu">
             <li><a href="#">E-mail Link</a></li>
@@ -57,7 +55,7 @@
             <li><a href="#">Copy Link </a></li>
           </ul>
         </li>
-        <li ><a href="#">   Print to Pdf <span style="font-size:25px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-print"></span></a></li>
+        <li ><a href="#">   Print&nbsp;&nbsp; <span style="font-size:25px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-print"></span></a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->
@@ -66,11 +64,12 @@
 
 
 	<div class='col col--12 col--9-ml h180 h-full-ml'>
-		<div id="map" class='viewport-twothirds viewport-full-ml'></div>
+		<div class="custom-popup" id="map"></div>
 	</div>
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
+
+    <!-- ==================================================  -->
+
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script>
@@ -79,16 +78,7 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-  <script src="http://d3js.org/d3.v3.min.js"></script>
-  <!-- <script src="http://d3js.org/topojson.v1.min.js"></script> -->
   <script src="http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
-  <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
-  <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
-  <!-- <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script> -->
-
-  <!-- <script src="https://unpkg.com/esri-leaflet@2.0.8"></script>
-     <script src="https://unpkg.com/esri-leaflet-renderers@2.0.6"></script> -->
 	<script src='js/app.js'></script>
 </body>
 
