@@ -40,6 +40,11 @@
     $.getJSON("data/HalfmoonParcels2016.geojson", function(data) {
         //the data lodaded from the file is accessible here within this function scope
         console.log(data);
+        makeMap(data);
+
+    });
+
+    function makeMap(data){
         var parcelLayer = L.geoJson(data, {
             style: function(feature) {
                 return {
@@ -70,7 +75,7 @@
                 });
             }
         }).addTo(map);
-    });
+    }
 
 
     //
