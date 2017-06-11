@@ -25,7 +25,8 @@
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
     <!-- do I need to add both leaflet AND mapbox CSS or just MapBox? -->
     <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.css' rel='stylesheet' />
-
+		<!-- <link rel="stylesheet" href="css/styledLayerControl.css" /> -->
+	<!-- <script src="js/styledLayerControl.js"></script> -->
 </head>
 
 <body>
@@ -64,21 +65,24 @@
 
 
 	<div class='col col--12 col--9-ml h180 h-full-ml'>
-		<div class="custom-popup" id="map"></div>
+		<div class="custom" id="map"></div>
 	</div>
 
 
     <!-- ==================================================  -->
 
 	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAscHqPt0DTdXAKvMji43vC5Yazka0_-AU" async defer></script>
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	<script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script>
 		window.jQuery || document.write('<script src="jquery.min.js"><\/script>')
 	</script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
   <script src="http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.js"></script>
+
 	<script src='js/app.js'></script>
 </body>
 
