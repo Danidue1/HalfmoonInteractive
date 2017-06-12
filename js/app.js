@@ -2,48 +2,48 @@
     L.mapbox.accessToken = 'pk.eyJ1IjoiZGFuaWR1ZTEiLCJhIjoiY2oxaDhid2E1MDAzejJxcGRqdmRkNzZjaCJ9.iF4gj5b98voRypvuygAxGw';
 
     var map = L.mapbox.map('map', null, {
-        'center': [42.86, -73.72],
+        'center': [42.876301, -73.727470],
         'zoom': 12,
         'dragging': true,
         'zoomControl': true,
         'scrollWheelZoom': true
     });
-  
+
     layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
     var baseMaps = {
-      "Google Aerials": googleSat,
-      "Google Hybrid": googleHybrid,
-      "Google Streets": googleStreets,
-      "NYS Aerials (2014)": nysdop2014
+        "Google Aerials": googleSat,
+        "Google Hybrid": googleHybrid,
+        "Google Streets": googleStreets,
+        "NYS Aerials (2014)": nysdop2014
     }
     var overlayMaps = {
-      "2016 Halfmoon Tax Parcels": drawParcels,
-      "NYS DEC Wetlands": drawWetlandsNY,
-      "NWI Wetlands": drawWetlandsNWI,
-      "Parks": drawParks,
-      "Trails": drawTrails,
-      "Town Zoning": drawZoning
+        "2016 Halfmoon Tax Parcels": drawParcels,
+        "NYS DEC Wetlands": drawWetlandsNY,
+        "NWI Wetlands": drawWetlandsNWI,
+        "Parks": drawParks,
+        "Trails": drawTrails,
+        "Town Zoning": drawZoning
     }
     var options = {
         collapsed: false
-      };
-// L.control.layers(baseMaps).addTo(map);
-// L.control.layers(baseMaps, overlayMaps).addTo(map);
+    };
+    // L.control.layers(baseMaps).addTo(map);
+    // L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 
-//Add a basemap layers
-    var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    //Add a basemap layers
+    var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
         maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3']
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     })
-    .addTo(map)
-
-    var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
-        maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3']
-    });
     // .addTo(map)
+
+    var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        })
+        .addTo(map)
 
     var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
         maxZoom: 20,
@@ -59,47 +59,47 @@
     // .addTo(map);
 
 
-console.log(drawParcels);
+    console.log(drawParcels);
 
-//load 2016 Parcel Data
-$.getJSON("data/HalfmoonParcels2016.geojson", function(data) {
-        //console.log(data);
-        drawParcels(data);
-      });
-//Load NYS DEC wetlands layer
-$.getJSON("data/NYSDEC_Wetlands.geojson", function(data) {
-        //console.log(data);
-        drawWetlandsNY(data)
-      });
-//load National Wetlands Inventory Layer
-$.getJSON("data/NWI_Wetlands.geojson", function(data) {
-        //console.log(data);
-        drawWetlandsNWI(data)
-      });
-//Load halfmoon trails data
-$.getJSON("data/HalfmoonTrails.geojson", function(data) {
+    // //Load halfmoon trails data
+    $.getJSON("data/HalfmoonTrails.geojson", function(data) {
         //console.log(data);
         drawTrails(data)
-      });
-//load halfmoon parks data
-$.getJSON("data/HalfmoonParks.geojson", function(data) {
-            //console.log(data);
-            drawParks(data)
-          });
-//load halfmoon zoning data
-$.getJSON("data/HalfmoonZoning.geojson", function(data) {
-          // console.log(data);
-            drawZoning(data)
-          });
+    });
+    // //load 2016 Parcel Data
+    $.getJSON("data/HalfmoonParcels2016.geojson", function(data) {
+        //console.log(data);
+        drawParcels(data);
+    });
+    // //Load NYS DEC wetlands layer
+    $.getJSON("data/NYSDEC_Wetlands.geojson", function(data) {
+        //console.log(data);
+        drawWetlandsNY(data)
+    });
+    // //load National Wetlands Inventory Layer
+    $.getJSON("data/NWI_Wetlands.geojson", function(data) {
+        //console.log(data);
+        drawWetlandsNWI(data)
+    });
+    // //load halfmoon parks data
+    $.getJSON("data/HalfmoonParks.geojson", function(data) {
+        //console.log(data);
+        drawParks(data)
+    });
+    //load halfmoon zoning data
+    // $.getJSON("data/HalfmoonZoning.geojson", function(data) {
+    //           // console.log(data);
+    //             drawZoning(data)
+    //           });
 
-var customPopupOptions = {
-      'max-width': '500',
-      'className': 'custom',
-      'closeButton': 'false'
+    var customPopupOptions = {
+        'max-width': '500',
+        'className': 'custom',
+        'closeButton': 'false'
     }
 
-//Creat, stylize and add UI to parcel layer
-function drawParcels(data){
+    //Creat, stylize and add UI to parcel layer
+    function drawParcels(data) {
         var parcelLayer = L.geoJson(data, {
             style: function(feature) {
                 return {
@@ -130,9 +130,9 @@ function drawParcels(data){
         }).addTo(map);
     };
 
-//create and stylize wetlands layer
-        function drawWetlandsNY(data){
-          var nysdecLayer = L.geoJson(data, {
+    //create and stylize wetlands layer
+    function drawWetlandsNY(data) {
+        var nysdecLayer = L.geoJson(data, {
             style: function(feature) {
                 return {
                     color: 'purple',
@@ -144,9 +144,9 @@ function drawParcels(data){
         }).addTo(map);
     }
 
-//create and stylize wetlands layer
-        function drawWetlandsNWI(data){
-          var nwiLayer = L.geoJson(data, {
+    //create and stylize wetlands layer
+    function drawWetlandsNWI(data) {
+        var nwiLayer = L.geoJson(data, {
             style: function(feature) {
                 return {
                     color: 'Green',
@@ -158,8 +158,8 @@ function drawParcels(data){
         }).addTo(map);
     }
 
-//Create, sytlize and add UI to trails layer
-      function drawTrails(data){
+    //Create, sytlize and add UI to trails layer
+    function drawTrails(data) {
         var trailsLayer = L.geoJson(data, {
             style: function(feature) {
                 if (feature.properties.Type_2017 === "Off Road Trail (Constructed)") {
@@ -184,23 +184,23 @@ function drawParcels(data){
                         opacity: 1
                     };
                 };
-              },
-                onEachFeature: function(feature, layer) {
-                    var popuptext = feature.properties.Trail_Name
-                    layer.bindPopup(popuptext, customPopupOptions)
+            },
+            onEachFeature: function(feature, layer) {
+                var popuptext = feature.properties.Trail_Name
+                layer.bindPopup(popuptext, customPopupOptions)
 
 
-    // //I really want to use the mouseover text more than click
-    // layer.bindPopup(popuptext);
-    // //Tooltip opens on mouseover
-    // layer.on('mouseover', function(e) {
-    //     e.target.openPopup();
-    // });
-    // //tooltip closed when "not moused"
-    // layer.on('mouseout', function(e) {
-    //     e.target.closePopup();
-    // });
-    // layer.bindPopup(popuptext)
+                // //I really want to use the mouseover text more than click
+                // layer.bindPopup(popuptext);
+                // //Tooltip opens on mouseover
+                // layer.on('mouseover', function(e) {
+                //     e.target.openPopup();
+                // });
+                // //tooltip closed when "not moused"
+                // layer.on('mouseout', function(e) {
+                //     e.target.closePopup();
+                // });
+                // layer.bindPopup(popuptext)
 
                 layer.on('mouseover', function() {
                     //set visual affordance to show yellow outlined counties on mouseover
@@ -219,20 +219,20 @@ function drawParcels(data){
         }).addTo(map);
     }
 
-//Create, sytlize and add UI to parks layer
-      function drawParks(data){
-    var parksLayer = L.geoJson(data, {
-        style: function(feature) {
-            return {
-                color: 'Green',
-                weight: 1,
-                fillOpacity: 1,
-                fillColor: 'Green'
-            };
-        },
+    //Create, sytlize and add UI to parks layer
+    function drawParks(data) {
+        var parksLayer = L.geoJson(data, {
+            style: function(feature) {
+                return {
+                    color: 'Green',
+                    weight: 1,
+                    fillOpacity: 1,
+                    fillColor: 'Green'
+                };
+            },
             onEachFeature: function(feature, layer) {
-                    var popuptext = feature.properties.name
-                    layer.bindPopup(popuptext, customPopupOptions)
+                var popuptext = feature.properties.name
+                layer.bindPopup(popuptext, customPopupOptions)
 
                 layer.on('mouseover', function() {
                     //set visual affordance to show yellow outlined counties on mouseover
@@ -253,8 +253,8 @@ function drawParcels(data){
         }).addTo(map)
     }
 
-//Create, sytlize and add UI to zoning layer
-        function drawZoning(data){
+    //Create, sytlize and add UI to zoning layer
+    function drawZoning(data) {
         var zoningLayer = L.geoJson(data, {
             style: function(feature) {
                 if (feature.properties.Zone === "A-R") {
@@ -395,21 +395,21 @@ function drawParcels(data){
                     var popuptext = feature.properties.Zone + " - " + feature.properties.Descript
                     layer.bindPopup(popuptext, customPopupOptions)
                 }
-    			layer.on('mouseover', function() {
-    					//set visual affordance to show yellow outlined counties on mouseover
-    					this.setStyle({
-    						color: 'black',
-    						opacity: 1,
-    						weight: 2,
-    					}).bringToFront();
-    				});
-    				//change visial affordance back to original outline color
-    				layer.on('mouseout', function() {
-    					this.setStyle({
-    						color: 'null',
-    						weight: 1
-    					})
-    				});
+                layer.on('mouseover', function() {
+                    //set visual affordance to show yellow outlined counties on mouseover
+                    this.setStyle({
+                        color: 'black',
+                        opacity: 1,
+                        weight: 2,
+                    }).bringToFront();
+                });
+                //change visial affordance back to original outline color
+                layer.on('mouseout', function() {
+                    this.setStyle({
+                        color: 'null',
+                        weight: 1
+                    })
+                });
             }
         }).addTo(map)
     }

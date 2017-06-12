@@ -23,9 +23,9 @@
 	<link href="css/webviewer.css" rel="stylesheet">
 	<!--Leaflet Custom Styles-->
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-    <!-- do I need to add both leaflet AND mapbox CSS or just MapBox? -->
-    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.css' rel='stylesheet' />
-		<!-- <link rel="stylesheet" href="css/styledLayerControl.css" /> -->
+	<!-- do I need to add both leaflet AND mapbox CSS or just MapBox? -->
+	<link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.css' rel='stylesheet' />
+	<!-- <link rel="stylesheet" href="css/styledLayerControl.css" /> -->
 	<!-- <script src="js/styledLayerControl.js"></script> -->
 </head>
 
@@ -45,22 +45,37 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#help">Help</a></li>
 				<li class="active"><a href="http://www.townofhalfmoon-ny.gov/">Town of Halfmoon Website</a></li>
-        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-
-        <li class="dropdown" style="margin-left:20px;">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Share <span class="caret"></span><span style="font-size:25px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-send"></span></a>
-          <ul class="dropdown-menu forAnimate" role="menu">
-            <li><a href="#">E-mail Link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Copy Link </a></li>
-          </ul>
-        </li>
-        <li ><a href="#">   Print&nbsp;&nbsp; <span style="font-size:25px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-print"></span></a></li>
-			</ul>
-		</div>
-		<!--/.nav-collapse -->
-		</div>
+				<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown" style="margin-left:20px;">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Share <span class="caret"></span><span style="font-size:25px;">
+					<i class="fa fa-paper-plane" aria-hidden="true"></i></span></a>
+							<ul class="dropdown-menu forAnimate" role="menu">
+								<li><a href="#">E-mail Link</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Copy Link </a></li>
+							</ul>
+						</li>
+						<li><a href="#">   Print&nbsp;&nbsp; <span style="font-size:25px;">
+				<i class="fa fa-print" aria-hidden="true"></i></span></a></li>
+					</ul>
+				</div>
+				<div class="navbar-collapse collapse" id="navbar-collapse">
+					<form class="navbar-form navbar-right">
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-th-large"></i>&nbsp;&nbsp;Basemap Selection&nbsp;&nbsp;<span class="caret"></span>
+                        </button>
+							<ul class="dropdown-menu" role="menu">
+								<li class="text-center"></li>
+								<li><a> &nbsp;&nbsp;Google Streets <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+								<li class="divider"></li>
+								<li><a>&nbsp;&nbsp;Google Aerial <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+								<li class="divider"></li>
+								<li><a>&nbsp;&nbsp;Google Hybrid <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+								<li class="divider"></li>
+								<li><a>&nbsp;&nbsp;2014 NYS Aerials&nbsp;<i class="fa fa-globe" aria-hidden="true"></i></a></li>
+						</div>
 	</nav>
 
 
@@ -69,7 +84,7 @@
 	</div>
 
 
-    <!-- ==================================================  -->
+	<!-- ==================================================  -->
 
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAscHqPt0DTdXAKvMji43vC5Yazka0_-AU" async defer></script>
@@ -81,7 +96,8 @@
 	</script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.js"></script>
+	<script src="http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.js"></script>
+	<script src="https://use.fontawesome.com/6297260b3a.js"></script>
 
 	<script src='js/app.js'></script>
 </body>
