@@ -9,7 +9,7 @@
         'scrollWheelZoom': true
     });
 
-    layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+    // layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
     var baseMaps = {
         "Google Aerials": googleSat,
