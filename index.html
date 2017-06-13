@@ -66,15 +66,15 @@
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-th-large"></i>&nbsp;&nbsp;Basemap Selection&nbsp;&nbsp;<span class="caret"></span>
                         </button>
-							<ul class="dropdown-menu" role="menu">
+							<ul id="basemap-ui" class="dropdown-menu" role="menu">
 								<li class="text-center"></li>
-								<li><a> &nbsp;&nbsp;Google Streets <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+								<li data-basemap="Google Streets"><a> &nbsp;&nbsp;Google Streets <i class="fa fa-globe" aria-hidden="true"></i></a></li>
 								<li class="divider"></li>
-								<li><a>&nbsp;&nbsp;Google Aerial <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+								<li data-basemap="Google Aerial"><a>&nbsp;&nbsp;Google Aerial <i class="fa fa-globe" aria-hidden="true"></i></a></li>
 								<li class="divider"></li>
-								<li><a>&nbsp;&nbsp;Google Hybrid <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+								<li data-basemap="Google Hybrid"><a>&nbsp;&nbsp;Google Hybrid <i class="fa fa-globe" aria-hidden="true"></i></a></li>
 								<li class="divider"></li>
-								<li><a>&nbsp;&nbsp;2014 NYS Aerials&nbsp;<i class="fa fa-globe" aria-hidden="true"></i></a></li>
+								<li data-basemap="2014 NYS Aerials"><a>&nbsp;&nbsp;2014 NYS Aerials&nbsp;<i class="fa fa-globe" aria-hidden="true"></i></a></li>
 						</div>
 	</nav>
 
@@ -91,11 +91,11 @@
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 	<script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script>
-		window.jQuery || document.write('<script src="jquery.min.js"><\/script>')
-	</script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script>
+		window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+	</script>
 	<script src="http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.js"></script>
 	<script src="https://use.fontawesome.com/6297260b3a.js"></script>
 

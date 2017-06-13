@@ -9,14 +9,57 @@
         'scrollWheelZoom': true
     });
 
-    layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+    // encapsulate basemap code in IIFE (Immediately Invoked Function Expression)
+    (function(){
 
-    var baseMaps = {
-        "Google Aerials": googleSat,
-        "Google Hybrid": googleHybrid,
-        "Google Streets": googleStreets,
-        "NYS Aerials (2014)": nysdop2014
-    }
+            // empty layerGroup for holding basemap layers
+            var basemapLayers = L.layerGroup().addTo(map);
+
+            //Add a basemap layers
+            var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+                maxZoom: 20,
+                subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+            }).addTo(basemapLayers);
+
+            var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+                    maxZoom: 20,
+                    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+                });
+
+            var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+                maxZoom: 20,
+                subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+            });
+
+            var nysdop2014 = L.tileLayer('http://www.orthos.dhses.ny.gov/ArcGIS/rest/services/2014/MapServer/tile/{z}/{y}/{x} ', {
+                maxZoom: 20,
+                //zIndex: 9,
+                attribution: '2014 NYSDOP Imagery courtesy of <a href="http://www.orthos.dhses.ny.gov/" target="_blank">NYS DHSES</a>'
+            });
+
+            var baseMaps = {
+                "Google Aerials": googleSat,
+                "Google Hybrid": googleHybrid,
+                "Google Streets": googleStreets,
+                "2014 NYS Aerials": nysdop2014
+            }
+
+            // when user clicks on li
+            $('#basemap-ui li').click(function(){
+                // access the target basemap
+                var targetBasemap = $(this).attr('data-basemap');
+
+                // loop through basemap layers and remove any
+                basemapLayers.eachLayer(function(layer){
+                    basemapLayers.removeLayer(layer);
+                });
+
+                // add the target basemap to the layerGroup
+                basemapLayers.addLayer(baseMaps[targetBasemap]);
+            })
+
+    })();
+
     var overlayMaps = {
         "2016 Halfmoon Tax Parcels": drawParcels,
         "NYS DEC Wetlands": drawWetlandsNY,
@@ -25,72 +68,48 @@
         "Trails": drawTrails,
         "Town Zoning": drawZoning
     }
-    var options = {
-        collapsed: false
-    };
-    // L.control.layers(baseMaps).addTo(map);
-    // L.control.layers(baseMaps, overlayMaps).addTo(map);
 
+    // empty object to hold all data
+    var data = {};
 
-    //Add a basemap layers
-    var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-        maxZoom: 20,
-        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-    })
-    // .addTo(map)
-
-    var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    // use promise to load all data
+    $.when(
+        $.getJSON("data/HalfmoonTrails.geojson", function(d) {
+            data.trails =  d;
+        }),
+        $.getJSON("data/HalfmoonParcels2016.geojson", function(d) {
+            data.parcels =  d;
+        }),
+        $.getJSON("data/NYSDEC_Wetlands.geojson", function(d) {
+            data.wetlands =  d;
+        }),
+        $.getJSON("data/HalfmoonParks.geojson", function(d) {
+            data.parks =  d;
+        }),
+        $.getJSON("data/HalfmoonZoning.geojson", function(d) {
+            data.zoning =  d;
         })
-        .addTo(map)
+    ).then(function() {
+        // when ready, you have it all here
+        console.log(data);
 
-    var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-        maxZoom: 20,
-        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        // sent to new function
+        drawThematicLayers(data)
     });
-    // .addTo(map)
 
-    var nysdop2014 = L.tileLayer('http://www.orthos.dhses.ny.gov/ArcGIS/rest/services/2014/MapServer/tile/{z}/{y}/{x} ', {
-        maxZoom: 20,
-        //zIndex: 9,
-        attribution: '2014 NYSDOP Imagery courtesy of <a href="http://www.orthos.dhses.ny.gov/" target="_blank">NYS DHSES</a>'
-    });
-    // .addTo(map);
+    function drawThematicLayers(data){
 
+        // first create all leaflet layers and assign to ref
+        var trailsLayer = drawTrails(data.trails);
+        var parcelLayer = drawParcels(data.parcels);
+        var wetlandsLayer = drawWetlandsNY(data.wetlands);
+        var parksLayer = drawParks(data.parks);
+        var zoningLayer = drawZoning(data.zoning);
 
-    console.log(drawParcels);
+        // now you can add/remove these layers from the map with a UI
+        zoningLayer.addTo(map);
 
-    // //Load halfmoon trails data
-    $.getJSON("data/HalfmoonTrails.geojson", function(data) {
-        //console.log(data);
-        drawTrails(data)
-    });
-    // //load 2016 Parcel Data
-    $.getJSON("data/HalfmoonParcels2016.geojson", function(data) {
-        //console.log(data);
-        drawParcels(data);
-    });
-    // //Load NYS DEC wetlands layer
-    $.getJSON("data/NYSDEC_Wetlands.geojson", function(data) {
-        //console.log(data);
-        drawWetlandsNY(data)
-    });
-    // //load National Wetlands Inventory Layer
-    $.getJSON("data/NWI_Wetlands.geojson", function(data) {
-        //console.log(data);
-        drawWetlandsNWI(data)
-    });
-    // //load halfmoon parks data
-    $.getJSON("data/HalfmoonParks.geojson", function(data) {
-        //console.log(data);
-        drawParks(data)
-    });
-    //load halfmoon zoning data
-    // $.getJSON("data/HalfmoonZoning.geojson", function(data) {
-    //           // console.log(data);
-    //             drawZoning(data)
-    //           });
+    }
 
     var customPopupOptions = {
         'max-width': '500',
@@ -127,7 +146,9 @@
                     })
                 });
             }
-        }).addTo(map);
+        });
+
+        return parcelLayer;
     };
 
     //create and stylize wetlands layer
@@ -141,7 +162,9 @@
                     fillColor: 'purple'
                 };
             }
-        }).addTo(map);
+        });
+
+        return nysdecLayer;
     }
 
     //create and stylize wetlands layer
@@ -155,7 +178,9 @@
                     fillColor: 'Green'
                 };
             }
-        }).addTo(map);
+        })
+
+        return nwiLayer;
     }
 
     //Create, sytlize and add UI to trails layer
@@ -216,7 +241,9 @@
                     })
                 });
             }
-        }).addTo(map);
+        });
+
+        return trailsLayer;
     }
 
     //Create, sytlize and add UI to parks layer
@@ -250,7 +277,9 @@
                     })
                 });
             }
-        }).addTo(map)
+        });
+
+        return parksLayer;
     }
 
     //Create, sytlize and add UI to zoning layer
@@ -411,7 +440,9 @@
                     })
                 });
             }
-        }).addTo(map)
+        });
+
+        return zoningLayer;
     }
 
 })();
