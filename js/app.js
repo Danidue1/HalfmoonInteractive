@@ -9,9 +9,6 @@
         'scrollWheelZoom': true
     });
 
-    // layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
-
-
     var overlayMaps = {
         "2016 Halfmoon Tax Parcels": drawParcels,
         "NYS DEC Wetlands": drawWetlandsNY,
@@ -20,48 +17,52 @@
         "Trails": drawTrails,
         "Town Zoning": drawZoning
     }
-    var options = {
-        collapsed: false
-    };
-    // L.control.layers(baseMaps).addTo(map);
-    // L.control.layers(baseMaps, overlayMaps).addTo(map);
 
+    // empty layerGroup for holding basemap layers
+    var basemapLayers = L.layerGroup().addTo(map);
 
     //Add a basemap layers
     var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
         maxZoom: 20,
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-    })
-    // .addTo(map)
+    });
 
     var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             maxZoom: 20,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        })
-        .addTo(map)
+        }).addTo(basemapLayers)
 
     var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
         maxZoom: 20,
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     });
-    // .addTo(map)
 
     var nysdop2014 = L.tileLayer('http://www.orthos.dhses.ny.gov/ArcGIS/rest/services/2014/MapServer/tile/{z}/{y}/{x} ', {
         maxZoom: 20,
         //zIndex: 9,
         attribution: '2014 NYSDOP Imagery courtesy of <a href="http://www.orthos.dhses.ny.gov/" target="_blank">NYS DHSES</a>'
     });
-    // .addTo(map);
 
     var baseMaps = {
         "Google Aerials": googleSat,
         "Google Hybrid": googleHybrid,
         "Google Streets": googleStreets,
-        "NYS Aerials (2014)": nysdop2014
+        "2014 NYS Aerials": nysdop2014
     }
 
+    // when user clicks on li
+    $('#basemap-ui li').click(function(){
+        // access the target basemap
+        var targetBasemap = $(this).attr('data-basemap');
 
-    console.log(drawParcels);
+        // loop through basemap layers and remove any
+        basemapLayers.eachLayer(function(layer){
+            basemapLayers.removeLayer(layer);
+        });
+
+        // add the target basemap to the layerGroup
+        basemapLayers.addLayer(baseMaps[targetBasemap]);
+    })
 
     // //Load halfmoon trails data
     $.getJSON("data/HalfmoonTrails.geojson", function(data) {
