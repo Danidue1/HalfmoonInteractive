@@ -11,12 +11,7 @@
 
     // layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-    var baseMaps = {
-        "Google Aerials": googleSat,
-        "Google Hybrid": googleHybrid,
-        "Google Streets": googleStreets,
-        "NYS Aerials (2014)": nysdop2014
-    }
+
     var overlayMaps = {
         "2016 Halfmoon Tax Parcels": drawParcels,
         "NYS DEC Wetlands": drawWetlandsNY,
@@ -57,6 +52,13 @@
         attribution: '2014 NYSDOP Imagery courtesy of <a href="http://www.orthos.dhses.ny.gov/" target="_blank">NYS DHSES</a>'
     });
     // .addTo(map);
+
+    var baseMaps = {
+        "Google Aerials": googleSat,
+        "Google Hybrid": googleHybrid,
+        "Google Streets": googleStreets,
+        "NYS Aerials (2014)": nysdop2014
+    }
 
 
     console.log(drawParcels);
