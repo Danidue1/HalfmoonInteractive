@@ -60,15 +60,6 @@
 
     })();
 
-    var overlayMaps = {
-        "2016 Halfmoon Tax Parcels": drawParcels,
-        "NYS DEC Wetlands": drawWetlandsNY,
-        "NWI Wetlands": drawWetlandsNWI,
-        "Parks": drawParks,
-        "Trails": drawTrails,
-        "Town Zoning": drawZoning
-    }
-
     // empty object to hold all data
     var data = {};
 
@@ -108,6 +99,16 @@
 
         // now you can add/remove these layers from the map with a UI
         zoningLayer.addTo(map);
+
+        // use a layers object in this function for control of the UI
+        var overlayMaps = {
+            "2016 Halfmoon Tax Parcels": drawParcels,
+            "NYS DEC Wetlands": drawWetlandsNY,
+            "NWI Wetlands": drawWetlandsNWI,
+            "Parks": drawParks,
+            "Trails": drawTrails,
+            "Town Zoning": drawZoning
+        }
 
     }
 
