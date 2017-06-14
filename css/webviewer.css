@@ -40,6 +40,11 @@ header {
     margin: 0;
     padding-left: 90px;
     padding-top: 25px;
+	font-family: 'Great Vibes', cursive;
+	font-size: 40px;
+	letter-spacing: 4px;
+	/*font-style: bold;*/
+	color: #EFA600
 }
 
 
@@ -60,10 +65,11 @@ header {
 /*"Help" Link Style*/
 
 .navbar-custom .navbar-nav>li>a {
-    color: #fff;
+    color: #EFA600;
     font-size: 1em;
     font-family: 'Roboto', sans-serif;
     font-style: italic;
+    font-weight: bold;
     border-radius: 5px;
     height: -15px;
 }
@@ -72,11 +78,12 @@ header {
 /*"Town of Halmoon" link style*/
 
 .navbar-custom .navbar-nav>.active>a {
-    color: #fff;
+    color: #EFA600;
     background-color: transparent;
     /*margin-top: -10px;*/
     font-family: 'Roboto', sans-serif;
     font-style: italic;
+    font-weight: bold;
 }
 
 .navbar-custom .navbar-nav>li>a:hover, .navbar-custom .navbar-nav>li>a:focus, .navbar-custom .navbar-nav>.active>a:hover, .navbar-custom .navbar-nav>.active>a:focus, .navbar-custom .navbar-nav>.open>a {
@@ -95,6 +102,7 @@ header {
 .navbar-custom .icon-bar {
     background-color: #6e76ed;
 }
+
 
 .navbar-nav {
   font-size: 1em;
@@ -142,11 +150,24 @@ header {
 
   }
 
-/*.nav .navbar-nav {
-	padding: 0;
+.panel-group {
+	width: 19%;
+	padding-top: 40px;
 
 }
+.panel-body {
+  padding: 5px
+}
+.panel-group .panel-heading{
+  background-color: #ffd980
+}
 
-.nav .navbar-nav a {
-
-}*/
+.panel-title {
+  color: #6e76ed;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+.btn .btn-success .btn-xs .toggle-on{
+  padding-right: 5px;
+  color:red
+}
