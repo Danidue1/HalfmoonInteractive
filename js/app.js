@@ -60,15 +60,6 @@
 
     })();
 
-    var overlayMaps = {
-        "2016 Halfmoon Tax Parcels": drawParcels,
-        "NYS DEC Wetlands": drawWetlandsNY,
-        "NWI Wetlands": drawWetlandsNWI,
-        "Parks": drawParks,
-        "Trails": drawTrails,
-        "Town Zoning": drawZoning
-    }
-
     // empty object to hold all data
     var data = {};
 
@@ -109,6 +100,23 @@
         // now you can add/remove these layers from the map with a UI
         zoningLayer.addTo(map);
 
+        var overlayMaps = {
+            "2016 Halfmoon Tax Parcels": drawParcels,
+            "NYS DEC Wetlands": drawWetlandsNY,
+            "NWI Wetlands": drawWetlandsNWI,
+            "Parks": drawParks,
+            "Trails": drawTrails,
+            "Town Zoning": drawZoning
+        }
+        // $("[name='my-checkbox']").bootstrapSwitch();
+        // $('#parcelSwitch').click(function(){
+        //     // access the target basemap
+        //     var targetBasemap = $(this).attr('data-basemap');
+        //
+        //     // loop through basemap layers and remove any
+        //     basemapLayers.eachLayer(function(layer){
+        //         basemapLayers.removeLayer(layer);
+        //     });
     }
 
     var customPopupOptions = {
@@ -172,10 +180,10 @@
         var nwiLayer = L.geoJson(data, {
             style: function(feature) {
                 return {
-                    color: 'Green',
+                    color: '#7fcdbb',
                     weight: 1,
-                    fillOpacity: 0.5,
-                    fillColor: 'Green'
+					fillOpacity: 0.5,
+                    fillColor: '#7fcdbb'
                 };
             }
         })
@@ -190,7 +198,7 @@
                 if (feature.properties.Type_2017 === "Off Road Trail (Constructed)") {
                     return {
                         weight: 4.5,
-                        color: 'purple',
+                        color: '#dd1c77',
                         opacity: 1
                     };
                 };
@@ -203,7 +211,7 @@
                 };
                 if (feature.properties.Type_2017 === "Off Road Trail (Proposed / Potential)") {
                     return {
-                        color: 'purple',
+                        color: '#dd1c77',
                         dashArray: "5 10",
                         weight: 4.5,
                         opacity: 1
@@ -444,5 +452,4 @@
 
         return zoningLayer;
     }
-
 })();
