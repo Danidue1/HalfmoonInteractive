@@ -17,22 +17,22 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<!-- font-family: 'Roboto', sans-serif; -->
 	<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-<!-- font-family: 'Great Vibes', cursive; -->
+	<!-- font-family: 'Great Vibes', cursive; -->
 
 	<!-- Bootstrap core CSS -->
-	<!-- Bootstrap core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<!-- Custom styles for this webmap -->
-		<link href="css/webviewer.css" rel="stylesheet">
-		<!--Leaflet Custom Styles-->
-		<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> -->
-		<!-- do I need to add both leaflet AND mapbox CSS or just MapBox? -->
-		<link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.css' rel='stylesheet' />
-		<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom styles for this webmap -->
+	<link href="css/webviewer.css" rel="stylesheet">
+	<!--Leaflet Custom Styles-->
+	<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> -->
+	<!-- do I need to add both leaflet AND mapbox CSS or just MapBox? -->
+	<link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.css' rel='stylesheet' />
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
 </head>
 
 <body>
+	<!-- create top fixed panel with logo, Title, help and website link -->
 	<nav class="navbar navbar-custom navbar-fixed-top">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,115 +48,122 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#help">Help</a></li>
 				<li class="active"><a href="http://www.townofhalfmoon-ny.gov/">Town of Halfmoon Website</a></li>
-			</div>
-<!-- create dropdown panels -->
-<div class="panel-group pull-right" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
+		</div>
+		<!-- create dropdown panels -->
+		<div class="panel-group pull-right" id="accordion">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
         <i class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;Layers</a>
       </h4>
-    </div>
-
-    <div id="collapse1" class="panel-collapse collapse">
-      <div class="panel-body">
-		 <div class="checkbox pull-right">
-		   <label>2016 Tax Parcels&nbsp;&nbsp;&nbsp;&nbsp;>
-		     <input type="checkbox" data-toggle="toggle"
+				</div>
+				<!-- Top most panel - create on/off switches for all layers -->
+				<div id="collapse1" class="panel-collapse collapse">
+					<div class="panel-body">
+						<div class="checkbox pull-right clear-right">
+							<label>2016 Tax Parcels&nbsp;&nbsp;&nbsp;&nbsp;>
+		     <input id="parcelSwitch" type="checkbox" data-toggle="toggle"
 				 data-size="mini"
 				  data-style="slow"
-				 data-onstyle="success"
-		   </label>
-		 </div>
-		 <div class="checkbox pull-right">
-		   <label>Town Zoning&nbsp;&nbsp;&nbsp;&nbsp;>
-		     <input type="checkbox" data-toggle="toggle"
+				 data-onstyle="success" />
+		   </label><b>
+						</div>
+						<div class="checkbox pull-right clear-right">
+							<label>Town Zoning&nbsp;&nbsp;&nbsp;&nbsp;>
+		     <input id="zoningSwitch" type="checkbox" data-toggle="toggle"
 				 data-size="mini"
 				  data-style="slow"
-				 data-onstyle="success"
-		   </label>
-		 </div>
-		 <div class="checkbox pull-right">
- 			<label>NYS DEC Wetlands&nbsp;&nbsp;&nbsp;&nbsp;>
- 				<input type="checkbox" data-toggle="toggle"
+				 data-onstyle="success" />
+		   </label><b>
+						</div>
+						<div class="checkbox pull-right clear-right">
+							<label>NYS DEC Wetlands&nbsp;&nbsp;&nbsp;&nbsp;>
+ 				<input id="nyWetSwitch" type="checkbox" data-toggle="toggle"
  				data-size="mini"
  				 data-style="slow"
- 				data-onstyle="success"
- 			</label>
- 		</div>
-		<div class="checkbox pull-right">
-		 <label>NWI Wetlands&nbsp;&nbsp;&nbsp;&nbsp;>
-			 <input type="checkbox" data-toggle="toggle"
+ 				data-onstyle="success" />
+ 			</label><b>
+						</div>
+						<div class="checkbox pull-right clear-right">
+							<label>NWI Wetlands&nbsp;&nbsp;&nbsp;&nbsp;>
+			 <input id="nwiWetSwitch" type="checkbox" data-toggle="toggle"
 			 data-size="mini"
 				data-style="slow"
-			 data-onstyle="success"
-		 </label>
-	 </div>
-	 <div class="checkbox pull-right">
-		<label>Parks&nbsp;&nbsp;&nbsp;&nbsp;>
-			<input type="checkbox" data-toggle="toggle"
+			 data-onstyle="success" />
+		 </label><b>
+						</div>
+						<div class="checkbox pull-right clear-right">
+							<label>Parks&nbsp;&nbsp;&nbsp;&nbsp;>
+			<input id="parkSwitch" type="checkbox" data-toggle="toggle"
 			data-size="mini"
 			 data-style="slow"
-			data-onstyle="success"
-		</label>
-	</div>
-	<div class="checkbox pull-right">
-	 <label>Trails&nbsp;&nbsp;&nbsp;&nbsp;>
-		 <input type="checkbox" data-toggle="toggle"
+			data-onstyle="success" />
+		</label><b>
+						</div>
+						<div class="checkbox pull-right clear-right">
+							<label>Trails&nbsp;&nbsp;&nbsp;&nbsp;>
+		 <input id="trailSwitch" type="checkbox" data-toggle="toggle"
 		 data-size="mini"
 			data-style="slow"
-		 data-onstyle="success"
-	 </label>
- </div>
-		  <div class="btn-group center-block text-center">
-			  <button type="button" class="btn btn-default center-block dropdown-toggle" data-toggle="dropdown">
+		 data-onstyle="success" />
+	 </label><b>
+						</div>
+						<!-- Create basemap dropdown menu on first collapsable panel -->
+						<div class="btn-group center-block text-center basemap-button">
+							<button type="button" class="btn btn-default center-block dropdown-toggle" data-toggle="dropdown">
 			  <i class="fa fa-th-large"></i>&nbsp;&nbsp;Basemap Selection&nbsp;&nbsp;<span class="caret"></span>
 		  </button>
-			  <ul id="basemap-ui" class="dropdown-menu" role="menu">
-				  <li class="text-center"></li>
-				  <li data-basemap="Google Streets"><a> &nbsp;&nbsp;Google Streets <i class="fa fa-globe" aria-hidden="true"></i></a></li>
-				  <li class="divider"></li>
-				  <li data-basemap="Google Aerial"><a>&nbsp;&nbsp;Google Aerial <i class="fa fa-globe" aria-hidden="true"></i></a></li>
-				  <li class="divider"></li>
-				  <li data-basemap="Google Hybrid"><a>&nbsp;&nbsp;Google Hybrid <i class="fa fa-globe" aria-hidden="true"></i></a></li>
-				  <li class="divider"></li>
-				  <li data-basemap="2014 NYS Aerials"><a>&nbsp;&nbsp;2014 NYS Aerials&nbsp;<i class="fa fa-globe" aria-hidden="true"></i></a></li>
-</div>
-    </div>
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
+							<ul id="basemap-ui" class="dropdown-menu" role="menu">
+								<li class="text-center"></li>
+								<li data-basemap="Google Streets"><a> &nbsp;&nbsp;Google Streets <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+								<li class="divider"></li>
+								<li data-basemap="Google Aerial"><a>&nbsp;&nbsp;Google Aerial <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+								<li class="divider"></li>
+								<li data-basemap="Google Hybrid"><a>&nbsp;&nbsp;Google Hybrid <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+								<li class="divider"></li>
+								<li data-basemap="2014 NYS Aerials"><a>&nbsp;&nbsp;2014 NYS Aerials&nbsp;<i class="fa fa-globe" aria-hidden="true"></i></a></li>
+						</div>
+					</div>
+				</div>
+				<!-- Create second drop down panel -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
         <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;Search</a>
       </h4>
-    </div>
-    <div id="collapse2" class="panel-collapse collapse">
-      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
+	  			</div>
+					<div id="collapse2" class="panel-collapse collapse">
+						<div class="input-group">
+						  <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+						  <div class="input-group-btn">
+							  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+						<div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+					</div>
+					</div>
+				</div>
+				<!-- create third Collapsable panel -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
         <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;Draw & Measure</a>
       </h4>
-    </div>
-    <div id="collapse3" class="panel-collapse collapse">
-      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
-    </div>
-  </div>
-</div>
+					</div>
+					<div id="collapse3" class="panel-collapse collapse">
+						<button type="button" class="btn btn-info" style="display: block; margin: 5px auto; width: 160px">Draw</button>
+						<button type="button" class="btn btn-primary" style="display: block; margin: 5px auto; width: 160px">Measure</button>
+						<!-- <a href="#" class="btn btn-info" role="button">Draw</a>
+<button type="button" class="btn btn-info">Measure</button>
+<input type="button" class="btn btn-info" value="Draw">
+<input type="submit" class="btn btn-info" value="Measure"> -->
+						<div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+					</div>
+				</div>
+			</div>
 
-				<!-- <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+			<!-- <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown" style="margin-left:20px;">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Share <span class="caret"></span><span style="font-size:25px;color:white;">
@@ -171,9 +178,9 @@
 				<i class="fa fa-print" aria-hidden="true"></i></span></a></li>
 					</ul>
 				</div> -->
-				<!-- <div class="navbar-collapse collapse" id="navbar-collapse">
+			<!-- <div class="navbar-collapse collapse" id="navbar-collapse">
 					<form class="navbar-form navbar-right"> -->
-						<!-- <div class="btn-group pull-right">
+			<!-- <div class="btn-group pull-right">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-th-large"></i>&nbsp;&nbsp;Basemap Selection&nbsp;&nbsp;<span class="caret"></span>
                         </button>
@@ -210,7 +217,7 @@
 	</script>
 	<script src="http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.js"></script>
 	<script src="https://use.fontawesome.com/6297260b3a.js"></script>
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 	<script src='js/app.js'></script>
 </body> -->
 

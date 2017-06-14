@@ -38,7 +38,7 @@
             });
 
             var baseMaps = {
-                "Google Aerials": googleSat,
+                "Google Aerial": googleSat,
                 "Google Hybrid": googleHybrid,
                 "Google Streets": googleStreets,
                 "2014 NYS Aerials": nysdop2014
@@ -72,7 +72,10 @@
             data.parcels =  d;
         }),
         $.getJSON("data/NYSDEC_Wetlands.geojson", function(d) {
-            data.wetlands =  d;
+            data.NYwetlands =  d;
+        }),
+		$.getJSON("data/NWI_Wetlands.geojson", function(d) {
+            data.NWIwetlands =  d;
         }),
         $.getJSON("data/HalfmoonParks.geojson", function(d) {
             data.parks =  d;
@@ -93,30 +96,103 @@
         // first create all leaflet layers and assign to ref
         var trailsLayer = drawTrails(data.trails);
         var parcelLayer = drawParcels(data.parcels);
-        var wetlandsLayer = drawWetlandsNY(data.wetlands);
+        var wetlandsNYLayer = drawWetlandsNY(data.NYwetlands);
+		var wetlandsNWILayer = drawWetlandsNWI(data.NWIwetlands);
         var parksLayer = drawParks(data.parks);
         var zoningLayer = drawZoning(data.zoning);
 
         // now you can add/remove these layers from the map with a UI
-        zoningLayer.addTo(map);
+        // zoningLayer.addTo(map);
 
-        var overlayMaps = {
-            "2016 Halfmoon Tax Parcels": drawParcels,
-            "NYS DEC Wetlands": drawWetlandsNY,
-            "NWI Wetlands": drawWetlandsNWI,
-            "Parks": drawParks,
-            "Trails": drawTrails,
-            "Town Zoning": drawZoning
-        }
-        // $("[name='my-checkbox']").bootstrapSwitch();
-        // $('#parcelSwitch').click(function(){
-        //     // access the target basemap
-        //     var targetBasemap = $(this).attr('data-basemap');
-        //
-        //     // loop through basemap layers and remove any
-        //     basemapLayers.eachLayer(function(layer){
-        //         basemapLayers.removeLayer(layer);
-        //     });
+        // var overlayMaps = {
+        //     "2016 Halfmoon Tax Parcels": drawParcels,
+        //     "NYS DEC Wetlands": drawWetlandsNY,
+        //     "NWI Wetlands": drawWetlandsNWI,
+        //     "Parks": drawParks,
+        //     "Trails": drawTrails,
+        //     "Town Zoning": drawZoning
+        // }
+        //$("[name='my-checkbox']").bootstrapSwitch();
+
+        $('#parcelSwitch').on('change', function(){
+            // access the target basemap
+            var checkValue = $(this).prop('checked');
+		//	console.log(parcelLayer);
+
+			if (checkValue) {
+				// it's checked
+				parcelLayer.addTo(map);
+			}else {
+				map.removeLayer(parcelLayer);
+				// unchecked
+			}
+		});
+		$('#zoningSwitch').on('change', function(){
+            // access the target basemap
+            var checkValue = $(this).prop('checked');
+		//	console.log(parcelLayer);
+
+			if (checkValue) {
+				// it's checked
+			zoningLayer.addTo(map);
+			}else {
+				map.removeLayer(zoningLayer);
+				// unchecked
+			}
+		});
+		$('#nyWetSwitch').on('change', function(){
+			// access the target basemap
+			var checkValue = $(this).prop('checked');
+		//	console.log(parcelLayer);
+
+			if (checkValue) {
+				// it's checked
+			wetlandsNYLayer.addTo(map);
+			}else {
+				map.removeLayer(wetlandsNYLayer);
+				// unchecked
+			}
+		});
+
+	$('#nwiWetSwitch').on('change', function(){
+		// access the target basemap
+		var checkValue = $(this).prop('checked');
+	//	console.log(parcelLayer);
+
+		if (checkValue) {
+			// it's checked
+		wetlandsNWILayer.addTo(map);
+		}else {
+			map.removeLayer(wetlandsNWILayer);
+			// unchecked
+		}
+	});
+	$('#parkSwitch').on('change', function(){
+		// access the target basemap
+		var checkValue = $(this).prop('checked');
+	//	console.log(parcelLayer);
+
+		if (checkValue) {
+			// it's checked
+		parksLayer.addTo(map);
+		}else {
+			map.removeLayer(parksLayer);
+			// unchecked
+		}
+	});
+	$('#trailSwitch').on('change', function(){
+		// access the target basemap
+		var checkValue = $(this).prop('checked');
+	//	console.log(parcelLayer);
+
+		if (checkValue) {
+			// it's checked
+		trailsLayer.addTo(map);
+		}else {
+			map.removeLayer(trailsLayer);
+			// unchecked
+		}
+	});
     }
 
     var customPopupOptions = {
@@ -130,7 +206,7 @@
         var parcelLayer = L.geoJson(data, {
             style: function(feature) {
                 return {
-                    color: 'yellow',
+                    color: 'orange',
                     weight: 1.5,
                     fillOpacity: 0.5,
                     fillColor: 'transparent'
@@ -261,7 +337,7 @@
                 return {
                     color: 'Green',
                     weight: 1,
-                    fillOpacity: 1,
+                    fillOpacity: 0.7,
                     fillColor: 'Green'
                 };
             },

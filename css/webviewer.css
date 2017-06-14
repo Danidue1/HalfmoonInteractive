@@ -3,6 +3,7 @@
     height: 900px;
     margin: 80px auto;
     border: 1px solid #3d3d3d;
+	position: fixed;
 }
 
 header {
@@ -39,7 +40,7 @@ header {
 .navbar .navbar-brand>p {
     margin: 0;
     padding-left: 90px;
-    padding-top: 25px;
+    padding-top: 30px;
 	font-family: 'Great Vibes', cursive;
 	font-size: 40px;
 	letter-spacing: 4px;
@@ -49,7 +50,6 @@ header {
 
 
 /*control of nav bar*/
-
 .navbar .navbar-brand {
     padding: 0;
     font-weight: bold;
@@ -62,7 +62,7 @@ header {
 }
 
 
-/*"Help" Link Style*/
+/*"Help" & Town of Halfmoon Link Style*/
 
 .navbar-custom .navbar-nav>li>a {
     color: #EFA600;
@@ -72,19 +72,11 @@ header {
     font-weight: bold;
     border-radius: 5px;
     height: -15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 15px;
 }
 
-
-/*"Town of Halmoon" link style*/
-
-.navbar-custom .navbar-nav>.active>a {
-    color: #EFA600;
-    background-color: transparent;
-    /*margin-top: -10px;*/
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-    font-weight: bold;
-}
 
 .navbar-custom .navbar-nav>li>a:hover, .navbar-custom .navbar-nav>li>a:focus, .navbar-custom .navbar-nav>.active>a:hover, .navbar-custom .navbar-nav>.active>a:focus, .navbar-custom .navbar-nav>.open>a {
     text-decoration: none;
@@ -150,13 +142,21 @@ header {
 
   }
 
+/*Collapsable Panels*/
 .panel-group {
-	width: 19%;
+	width: 15%;
 	padding-top: 40px;
 
 }
 .panel-body {
-  padding: 5px
+  padding: 5px;
+  height: auto;
+}
+
+
+.basemap-button {
+	width: 185px;
+	clear: both;
 }
 .panel-group .panel-heading{
   background-color: #ffd980
@@ -167,7 +167,14 @@ header {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
 }
-.btn .btn-success .btn-xs .toggle-on{
-  padding-right: 5px;
-  color:red
+
+.clear-right {
+	clear: right;
+}
+
+/*Button Toggle issue with "on" text padding*/
+.toggle-on.btn-xs {
+  padding-left: 5px;
+  /*color:#EFA600;*/
+
 }
