@@ -19,15 +19,17 @@
 	<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
 	<!-- font-family: 'Great Vibes', cursive; -->
 
-	<!-- Bootstrap core CSS -->
+	<!-- Bootstrap stylz -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<!-- Custom styles for this webmap -->
+	<!-- Custom stylz for this webmap -->
 	<link href="css/webviewer.css" rel="stylesheet">
-	<!--Leaflet Custom Styles-->
-	<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> -->
-	<!-- do I need to add both leaflet AND mapbox CSS or just MapBox? -->
+	<!--  MapBox Stylz -->
 	<link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.css' rel='stylesheet' />
 	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+	<!-- leaflet-search stylz -->
+	<link href="css/leaflet-search.min.css" rel="stylesheet">
+	<link href="css/leaflet-search.mobile.min.css" rel="stylesheet">
+	<link href="css/leaflet-search.mobile.src.css" rel="stylesheet">
 
 </head>
 
@@ -44,65 +46,85 @@
 				<p>Town of Halfmoon</p>
 			</div>
 		</div>
-		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#help">Help</a></li>
-				<li class="active"><a href="http://www.townofhalfmoon-ny.gov/">Town of Halfmoon Website</a></li>
-		</div>
-		<!-- create dropdown panels -->
-		<div class="panel-group pull-right" id="accordion">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title">
+		<!-- Create help button modal -->
+			<button id="help" type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#helpModal">Help</button>
+
+				<button id="websiteURL"type="button" class="btn btn-info btn-sm pull-right" <a href="http://www.townofhalfmoon-ny.gov/">Town of Halfmoon Website</a></button>
+
+			<!-- Modal -->
+			<div id="helpModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Stuck on something? In need of assistnace? looking for more info?</h4>
+						</div>
+						<div class="modal-body">
+							<p>Some text in the modal.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- create dropdown panels -->
+			<div class="panel-group pull-right" id="accordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
         <i class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;Layers</a>
       </h4>
-				</div>
-				<!-- Top most panel - create on/off switches for all layers -->
-				<div id="collapse1" class="panel-collapse collapse">
-					<div class="panel-body">
-						<div class="checkbox pull-right clear-right">
-							<label>2016 Tax Parcels&nbsp;&nbsp;&nbsp;&nbsp;>
+					</div>
+					<!-- Top most panel - create on/off switches for all layers -->
+					<div id="collapse1" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div class="checkbox pull-right clear-right">
+								<label>2016 Tax Parcels&nbsp;&nbsp;>
 		     <input id="parcelSwitch" type="checkbox" data-toggle="toggle"
 				 data-size="mini"
 				  data-style="slow"
 				 data-onstyle="success" />
-		   </label><b>
-						</div>
-						<div class="checkbox pull-right clear-right">
-							<label>Town Zoning&nbsp;&nbsp;&nbsp;&nbsp;>
+		   </label>
+							</div>
+							<div class="checkbox pull-right clear-right">
+								<label>Town Zoning&nbsp;&nbsp;>
 		     <input id="zoningSwitch" type="checkbox" data-toggle="toggle"
 				 data-size="mini"
 				  data-style="slow"
 				 data-onstyle="success" />
-		   </label><b>
-						</div>
-						<div class="checkbox pull-right clear-right">
-							<label>NYS DEC Wetlands&nbsp;&nbsp;&nbsp;&nbsp;>
+		   </label>
+							</div>
+							<div class="checkbox pull-right clear-right">
+								<label>NYS DEC Wetlands&nbsp;&nbsp;>
  				<input id="nyWetSwitch" type="checkbox" data-toggle="toggle"
  				data-size="mini"
  				 data-style="slow"
  				data-onstyle="success" />
- 			</label><b>
-						</div>
-						<div class="checkbox pull-right clear-right">
-							<label>NWI Wetlands&nbsp;&nbsp;&nbsp;&nbsp;>
+ 			</label>
+							</div>
+							<div class="checkbox pull-right clear-right">
+								<label>NWI Wetlands&nbsp;&nbsp;>
 			 <input id="nwiWetSwitch" type="checkbox" data-toggle="toggle"
 			 data-size="mini"
 				data-style="slow"
 			 data-onstyle="success" />
-		 </label><b>
-						</div>
-						<div class="checkbox pull-right clear-right">
-							<label>Parks&nbsp;&nbsp;&nbsp;&nbsp;>
+		 </label>
+							</div>
+							<div class="checkbox pull-right clear-right">
+								<label>Parks&nbsp;&nbsp;>
 			<input id="parkSwitch" type="checkbox" data-toggle="toggle"
 			data-size="mini"
 			 data-style="slow"
 			data-onstyle="success" />
-		</label><b>
-						</div>
-						<div class="checkbox pull-right clear-right">
-							<label>Trails&nbsp;&nbsp;&nbsp;&nbsp;>
+		</label>
+							</div>
+							<div class="checkbox pull-right clear-right">
+								<label>Trails&nbsp;&nbsp;>
 		 <input id="trailSwitch" type="checkbox" data-toggle="toggle"
 		 data-size="mini"
 			data-style="slow"
@@ -162,38 +184,6 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown" style="margin-left:20px;">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Share <span class="caret"></span><span style="font-size:25px;color:white;">
-					<i class="fa fa-paper-plane" aria-hidden="true"></i></span></a>
-							<ul class="dropdown-menu forAnimate" role="menu">
-								<li><a href="#">E-mail Link</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Copy Link </a></li>
-							</ul>
-						</li>
-						<li><a href="#">   Print&nbsp;&nbsp; <span style="font-size:25px; color:white;">
-				<i class="fa fa-print" aria-hidden="true"></i></span></a></li>
-					</ul>
-				</div> -->
-			<!-- <div class="navbar-collapse collapse" id="navbar-collapse">
-					<form class="navbar-form navbar-right"> -->
-			<!-- <div class="btn-group pull-right">
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-th-large"></i>&nbsp;&nbsp;Basemap Selection&nbsp;&nbsp;<span class="caret"></span>
-                        </button>
-							<ul id="basemap-ui" class="dropdown-menu" role="menu">
-								<li class="text-center"></li>
-								<li data-basemap="Google Streets"><a> &nbsp;&nbsp;Google Streets <i class="fa fa-globe" aria-hidden="true"></i></a></li>
-								<li class="divider"></li>
-								<li data-basemap="Google Aerial"><a>&nbsp;&nbsp;Google Aerial <i class="fa fa-globe" aria-hidden="true"></i></a></li>
-								<li class="divider"></li>
-								<li data-basemap="Google Hybrid"><a>&nbsp;&nbsp;Google Hybrid <i class="fa fa-globe" aria-hidden="true"></i></a></li>
-								<li class="divider"></li>
-								<li data-basemap="2014 NYS Aerials"><a>&nbsp;&nbsp;2014 NYS Aerials&nbsp;<i class="fa fa-globe" aria-hidden="true"></i></a></li>
-						</div> -->
 	</nav>
 
 
@@ -207,18 +197,19 @@
 
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAscHqPt0DTdXAKvMji43vC5Yazka0_-AU" async defer></script>
-	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-	<!-- <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script> -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<!-- <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script> -->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script>
 		window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 	</script>
 	<script src="http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.js"></script>
+	<!-- <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script> -->
 	<script src="https://use.fontawesome.com/6297260b3a.js"></script>
 	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 	<script src='js/app.js'></script>
+	<script src='js/leaflet-search.src.js'></script>
+	<script src='js/leaflet-search.min.js'></script>
 </body> -->
 
 </html>

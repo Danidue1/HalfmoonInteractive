@@ -62,7 +62,7 @@ header {
 }
 
 
-/*"Help" & Town of Halfmoon Link Style*/
+/*"Town of Halfmoon" URL Link Style*/
 
 .navbar-custom .navbar-nav>li>a {
     color: #EFA600;
@@ -74,13 +74,44 @@ header {
     height: -15px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	margin-top: 15px;
+	margin-top: 40px;
+}
+.btn-sm {
+	background-color: #3d52c8;
+	border: none;
+	color: #EFA600;
+	font-weight: bold;
+	font-style: italic;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1em;
+	border-radius: 5px;
+  margin-top: 5px
+	/*padding-bottom: 5px;
+	margin-bottom: : 15px;*/
+
+}
+
+.btn-sm:hover{
+	text-decoration: none;
+    background-color: #6e76ed;
+	color: white;
 }
 
 
+ .btn-m:active, .btn-sm:focus {
+  color: #EFA600 !important;
+  background-color: #3d52c8 !important;
+   border: none !important;
+   outline: none !important;
+  /*border-color: #3d52c8 !important;*/
+}
+.modal-backdrop {
+    z-index: 1020;
+}
 .navbar-custom .navbar-nav>li>a:hover, .navbar-custom .navbar-nav>li>a:focus, .navbar-custom .navbar-nav>.active>a:hover, .navbar-custom .navbar-nav>.active>a:focus, .navbar-custom .navbar-nav>.open>a {
     text-decoration: none;
     background-color: #6e76ed;
+	color: white;
 }
 
 .navbar-custom .navbar-brand {
@@ -144,8 +175,11 @@ header {
 
 /*Collapsable Panels*/
 .panel-group {
+  position: absolute;
 	width: 15%;
-	padding-top: 40px;
+	padding-top: 45px;
+  margin-left: 1130px;
+  margin-top: 50px
 
 }
 .panel-body {
