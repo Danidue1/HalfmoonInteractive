@@ -64,7 +64,7 @@ header {
 }
 
 
-/*"Town of Halfmoon" URL Link Style*/
+/*Start: "Town of Halfmoon" & Help URL Link Style*/
 
 .navbar-custom .navbar-nav>li>a {
     color: #EFA600;
@@ -104,13 +104,14 @@ header {
     background-color: #3d52c8 !important;
     border: none !important;
     outline: none !important;
-    /*border-color: #3d52c8 !important;*/
 }
+/*Start: "Town of Halfmoon" & Help URL Link Style*/
+
 /*Help Modal*/
 .modal-backdrop {
     z-index: 1020;
 }
-/*Launch Modal*/
+/* Start: Launch Modal*/
 .modal-content {
   width: 500px;
   font-family: 'Roboto', sans-serif;
@@ -134,37 +135,9 @@ header {
   font-size: 15px;
   font-weight: bold;
 }
-.navbar-custom .navbar-nav>li>a:hover, .navbar-custom .navbar-nav>li>a:focus, .navbar-custom .navbar-nav>.active>a:hover, .navbar-custom .navbar-nav>.active>a:focus, .navbar-custom .navbar-nav>.open>a {
-    text-decoration: none;
-    background-color: #6e76ed;
-    color: white;
-}
+/*End: Launch Modal*/
 
-.navbar-custom .navbar-brand {
-    color: #eeeeee;
-}
-
-.navbar-custom .navbar-toggle {
-    background-color: #eeeeee;
-}
-
-.navbar-custom .icon-bar {
-    background-color: #6e76ed;
-}
-
-.navbar-nav {
-    font-size: 1em;
-    margin: -5px;
-}
-
-.btn .glyphicon {
-    margin-right: 8px;
-}
-
-.btn.btn-icon .glyphicon {
-    margin-right: 0;
-}
-
+/*Start: Popup look and feel*/
 .custom .leaflet-popup-content-wrapper {
     background: white;
     position: relative;
@@ -198,13 +171,12 @@ header {
 }
 
 .custom .leaflet-popup-close-button {}
+/*Start: Popup look and feel*/
 
-
-/*Collapsable Panels*/
-
+/* Start Collapsable Panels*/
 .panel-group {
     position: absolute;
-    width: 250px;
+    width: 260px;
     padding-top: 45px;
     margin-right: 0px;
     margin-top: 50px;
@@ -213,6 +185,7 @@ header {
 }
 
 .panel-body {
+  /*position: relative;*/
     padding: 5px;
     height: auto;
 
@@ -235,24 +208,17 @@ header {
 .clear-right {
     clear: right;
 }
+/* End Collapsable Panels*/
 
-
-/*Button Toggle issue with "on" text padding*/
-
+/*Button Toggle issue in layer selection panel with "on" text padding*/
 .toggle-on.btn-xs {
     padding-left: 5px;
     /*color:#EFA600;*/
 }
 
-
+/*Start Leaflet Control Search */
 .leaflet-control-search {
 	margin-left: 35px;
-
-
-}
-
-.leaflet-control-search .leaflet-control {
-
 }
 
  .leaflet-control .search-input {
@@ -265,17 +231,26 @@ input#searchtext9.search-input{
   width: 150px;
   padding: 10px
 }
+
 .search-tip>li {
   font-size: 12px;
   font-family: 'Roboto', sans-serif;
   width: 150px;
   padding: 10px
 }
+
+div.leaflet-control-search.search-exp.leaflet-control .search-tooltip {
+  background-color: white;
+  font-size: 13px;
+  font-family:  'Roboto', sans-serif;
+}
+
 .leaflet-control-search.leaflet-control.search-exp {
   box-shadow: none;
   position: inherit;
   margin: 10px;
 }
+
 .search-button {
   padding: 10px;
 }
@@ -302,4 +277,12 @@ input#searchtext9.search-input{
       height: auto;
       font-size: 11px;
       font-style: italic;
+}
+
+.checkbox.pull-right.clear-right{
+  /*margin-left: 55px;*/
+  margin-bottom: -8px;
+}
+symbol#my-icon svg{
+  margin-top: -10px
 }

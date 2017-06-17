@@ -1,6 +1,6 @@
 (function() {
     L.mapbox.accessToken = 'pk.eyJ1IjoiZGFuaWR1ZTEiLCJhIjoiY2oxaDhid2E1MDAzejJxcGRqdmRkNzZjaCJ9.iF4gj5b98voRypvuygAxGw';
-
+//Create Map
     var map = L.mapbox.map('map', null, {
         'center': [42.876301, -73.727470],
         'zoom': 12,
@@ -8,9 +8,12 @@
         'zoomControl': true,
         'scrollWheelZoom': true
     });
-    $(window).on('load',function(){
-         $('#loadModal').modal('show');
-     });
+
+// Launch for Modal Disclaimer
+    // $(window).on('load',function(){
+    //      $('#loadModal').modal('show');
+    //  });
+
     // encapsulate basemap code in IIFE (Immediately Invoked Function Expression)
     (function() {
 
@@ -122,19 +125,6 @@
 
 
         // Add function to each of the layer switches
-        $('#parcelSwitch').on('change', function() {
-            // access the target basemap
-            var checkValue = $(this).prop('checked');
-            //	console.log(parcelLayer);
-
-            if (checkValue) {
-                // it's checked
-                parcelLayer.addTo(map);
-            } else {
-                map.removeLayer(parcelLayer);
-                // unchecked
-            }
-        });
         $('#zoningSwitch').on('change', function() {
             // access the target basemap
             var checkValue = $(this).prop('checked');
@@ -148,6 +138,21 @@
                 // unchecked
             }
         });
+
+        $('#parcelSwitch').on('change', function() {
+            // access the target basemap
+            var checkValue = $(this).prop('checked');
+            //	console.log(parcelLayer);
+
+            if (checkValue) {
+                // it's checked
+                parcelLayer.addTo(map);
+            } else {
+                map.removeLayer(parcelLayer);
+                // unchecked
+            }
+        });
+
         $('#nyWetSwitch').on('change', function() {
             // access the target basemap
             var checkValue = $(this).prop('checked');

@@ -57,7 +57,6 @@
 		</div>
 	</div>
 
-
 	<!-- create top fixed panel with logo, Title, help and website link -->
 	<nav class="navbar navbar-custom navbar-fixed-top">
 		<div class="navbar-header">
@@ -115,15 +114,13 @@
 				  data-style="slow"
 				 data-onstyle="success" />
 		   </label>
+			 <symbol id="my-icon" viewBox="0 0 30 30">
+				 <svg width="100" height="40">
+	 	 <rect x="30" y="11" width="20" height="15" style="fill:white;stroke:orange;stroke-width:5;fill-opacity:1;stroke-opacity:1" />
+	  </svg>
+</symbol>
 						</div>
-						<div class="checkbox pull-right clear-right">
-							<label>Town Zoning&nbsp;&nbsp;&nbsp;&nbsp;>
-		     <input id="zoningSwitch" type="checkbox" data-toggle="toggle"
-				 data-size="mini"
-				  data-style="slow"
-				 data-onstyle="success" />
-		   </label>
-						</div>
+
 						<div class="checkbox pull-right clear-right">
 							<label>NYS DEC Wetlands&nbsp;&nbsp;&nbsp;&nbsp;>
  				<input id="nyWetSwitch" type="checkbox" data-toggle="toggle"
@@ -131,6 +128,11 @@
  				 data-style="slow"
  				data-onstyle="success" />
  			</label>
+			<symbol id="my-icon" viewBox="0 0 30 30">
+				<svg width="100" height="40">
+		<rect x="30" y="11" width="20" height="15" style="fill:purple;stroke:purple;stroke-width:2;fill-opacity:0.5;stroke-opacity:0.5" />
+	 </svg>
+</symbol>
 						</div>
 						<div class="checkbox pull-right clear-right">
 							<label>NWI Wetlands&nbsp;&nbsp;&nbsp;&nbsp;>
@@ -139,6 +141,11 @@
 				data-style="slow"
 			 data-onstyle="success" />
 		 </label>
+		 <symbol id="my-icon" viewBox="0 0 30 30">
+			 <svg width="100" height="40">
+	 <rect x="30" y="11" width="20" height="15" style="fill:#7fcdbb;stroke:#7fcdbb;stroke-width:2;fill-opacity:0.5;stroke-opacity:0.5" />
+	</svg>
+</symbol>
 						</div>
 						<div class="checkbox pull-right clear-right">
 							<label>Parks&nbsp;&nbsp;&nbsp;&nbsp;>
@@ -147,6 +154,11 @@
 			 data-style="slow"
 			data-onstyle="success" />
 		</label>
+		<symbol id="my-icon" viewBox="0 0 30 30">
+			<svg width="100" height="40">
+	<rect x="30" y="11" width="20" height="15" style="fill:Green;stroke:Green;stroke-width:2;fill-opacity:0.7;stroke-opacity:0.7" />
+ </svg>
+</symbol>
 						</div>
 						<div class="checkbox pull-right clear-right">
 							<label>Trails&nbsp;&nbsp;&nbsp;&nbsp;>
@@ -156,8 +168,16 @@
 		 data-onstyle="success" />
 	 </label><b>
 						</div>
+						<div class="checkbox pull-right clear-right">
+							<label>Town Zoning&nbsp;&nbsp;&nbsp;&nbsp;>
+				 <input id="zoningSwitch" type="checkbox" data-toggle="toggle"
+				 data-size="mini"
+					data-style="slow"
+				 data-onstyle="success" />
+			 </label>
+						</div>
 						<!-- Create basemap dropdown menu on first collapsable panel -->
-						<div class="btn-group center-block text-center basemap-button">
+						<!-- <div class="btn-group center-block text-center basemap-button">
 							<button type="button" class="btn btn-default center-block dropdown-toggle" data-toggle="dropdown">
 			  <i class="fa fa-th-large"></i>&nbsp;&nbsp;Basemap Selection&nbsp;&nbsp;<span class="caret"></span>
 		  </button>
@@ -170,10 +190,10 @@
 								<li data-basemap="Google Hybrid"><a>&nbsp;&nbsp;Google Hybrid <i class="fa fa-globe" aria-hidden="true"></i></a></li>
 								<li class="divider"></li>
 								<li data-basemap="2014 NYS Aerials"><a>&nbsp;&nbsp;2014 NYS Aerials&nbsp;<i class="fa fa-globe" aria-hidden="true"></i></a></li>
-						</div>
+						</div>-->
 					</div>
 				</div>
-				<!-- Create second drop down panel -->
+				<!-- Create second panel Address Search -->
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
@@ -184,14 +204,13 @@
 				</div>
 					<div id="collapse2" class="panel-collapse collapse">
 						</div>
-						<!-- <div class="panel-body-search-main1">Property Address Search:
-							</div> -->
-							<div class="panel-body-search-direction">Begin with a street/house number. <br> Addresses will autofill.
+
+							<div class="panel-body-search-direction">Begin with a street/house number. <br> Addresses will begin to autofill after the entry of 2 characters.
 							</div>
 						<div id="collapse2_search2"class="input-group"></div>
 <!-- </div> -->
 
-				<!-- Create third drop down panel -->
+				<!-- Create third drop-down panel Property Owner Search -->
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
@@ -200,16 +219,12 @@
 			</h4>
 					</div>
 					</div>
-							<!-- <div class="panel-body-search-main">Property Owner Search:
-								</div> -->
-								<div class="panel-body-search-direction">Begin search with LAST name first.<br> Names will autofill.
+								<div class="panel-body-search-direction">Begin search with LAST name first.<br> Names will begin to autofill after the entry of 2 characters.
 								</div>
 							<div id="collapse2_search1"class="input-group">
 
 
-
-
-				<!-- create third Collapsable panel -->
+				<!-- create 4th Collapsable panel for Draw and Measure-->
 				<!-- <div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
