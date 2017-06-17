@@ -1,245 +1,249 @@
 (function() {
-        L.mapbox.accessToken = 'pk.eyJ1IjoiZGFuaWR1ZTEiLCJhIjoiY2oxaDhid2E1MDAzejJxcGRqdmRkNzZjaCJ9.iF4gj5b98voRypvuygAxGw';
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZGFuaWR1ZTEiLCJhIjoiY2oxaDhid2E1MDAzejJxcGRqdmRkNzZjaCJ9.iF4gj5b98voRypvuygAxGw';
 
-        var map = L.mapbox.map('map', null, {
-            'center': [42.876301, -73.727470],
-            'zoom': 12,
-            'dragging': true,
-            'zoomControl': true,
-            'scrollWheelZoom': true
+    var map = L.mapbox.map('map', null, {
+        'center': [42.876301, -73.727470],
+        'zoom': 12,
+        'dragging': true,
+        'zoomControl': true,
+        'scrollWheelZoom': true
+    });
+    $(window).on('load',function(){
+         $('#loadModal').modal('show');
+     });
+    // encapsulate basemap code in IIFE (Immediately Invoked Function Expression)
+    (function() {
+
+        // empty layerGroup for holding basemap layers
+        var basemapLayers = L.layerGroup().addTo(map);
+
+        //Add a basemap layers
+        var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        }).addTo(basemapLayers);
+
+        var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
-        // encapsulate basemap code in IIFE (Immediately Invoked Function Expression)
-        (function() {
-
-            // empty layerGroup for holding basemap layers
-            var basemapLayers = L.layerGroup().addTo(map);
-
-            //Add a basemap layers
-            var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-                maxZoom: 20,
-                subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-            }).addTo(basemapLayers);
-
-            var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-                maxZoom: 20,
-                subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-            });
-
-            var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-                maxZoom: 20,
-                subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-            });
-
-            var nysdop2014 = L.tileLayer('http://www.orthos.dhses.ny.gov/ArcGIS/rest/services/2014/MapServer/tile/{z}/{y}/{x} ', {
-                maxZoom: 20,
-                //zIndex: 9,
-                attribution: '2014 NYSDOP Imagery courtesy of <a href="http://www.orthos.dhses.ny.gov/" target="_blank">NYS DHSES</a>'
-            });
-
-            var baseMaps = {
-                "Google Aerial": googleSat,
-                "Google Hybrid": googleHybrid,
-                "Google Streets": googleStreets,
-                "2014 NYS Aerials": nysdop2014
-            }
-
-            // when user clicks on li
-            $('#basemap-ui li').click(function() {
-                // access the target basemap
-                var targetBasemap = $(this).attr('data-basemap');
-
-                // loop through basemap layers and remove any
-                basemapLayers.eachLayer(function(layer) {
-                    basemapLayers.removeLayer(layer);
-                });
-
-                // add the target basemap to the layerGroup
-                basemapLayers.addLayer(baseMaps[targetBasemap]);
-            })
-
-        })();
-
-        // empty object to hold all data
-        var data = {};
-
-        // use promise to load all data
-        $.when(
-            $.getJSON("data/HalfmoonTrails.geojson", function(d) {
-                data.trails = d;
-            }),
-            $.getJSON("data/HalfmoonParcels2016.geojson", function(d) {
-                data.parcels = d;
-            }),
-            $.getJSON("data/NYSDEC_Wetlands.geojson", function(d) {
-                data.NYwetlands = d;
-            }),
-            $.getJSON("data/NWI_Wetlands.geojson", function(d) {
-                data.NWIwetlands = d;
-            }),
-            $.getJSON("data/HalfmoonParks.geojson", function(d) {
-                data.parks = d;
-            }),
-            $.getJSON("data/HalfmoonZoning.geojson", function(d) {
-                data.zoning = d;
-            }),
-            $.getJSON("data/SurroundingTowns.geojson", function(d) {
-                data.towns = d;
-            })
-        ).then(function() {
-            // when ready, you have it all here
-            console.log(data);
-
-            // sent to new function
-            drawThematicLayers(data)
+        var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
-        function drawThematicLayers(data) {
+        var nysdop2014 = L.tileLayer('http://www.orthos.dhses.ny.gov/ArcGIS/rest/services/2014/MapServer/tile/{z}/{y}/{x} ', {
+            maxZoom: 20,
+            //zIndex: 9,
+            attribution: '2014 NYSDOP Imagery courtesy of <a href="http://www.orthos.dhses.ny.gov/" target="_blank">NYS DHSES</a>'
+        });
 
-            // first create all leaflet layers and assign to ref
-            var trailsLayer = drawTrails(data.trails);
-            var parcelLayer = drawParcels(data.parcels);
-            var wetlandsNYLayer = drawWetlandsNY(data.NYwetlands);
-            var wetlandsNWILayer = drawWetlandsNWI(data.NWIwetlands);
-            var parksLayer = drawParks(data.parks);
-            var zoningLayer = drawZoning(data.zoning);
-            var surroundTowns = drawTowns(data.towns)
+        var baseMaps = {
+            "Google Aerial": googleSat,
+            "Google Hybrid": googleHybrid,
+            "Google Streets": googleStreets,
+            "2014 NYS Aerials": nysdop2014
+        }
 
-            // now you can add/remove these layers from the map with a UI
-            // zoningLayer.addTo(map);
-            surroundTowns.addTo(map);
+        // when user clicks on li
+        $('#basemap-ui li').click(function() {
+            // access the target basemap
+            var targetBasemap = $(this).attr('data-basemap');
 
-            // var overlayMaps = {
-            //     "2016 Halfmoon Tax Parcels": drawParcels,
-            //     "NYS DEC Wetlands": drawWetlandsNY,
-            //     "NWI Wetlands": drawWetlandsNWI,
-            //     "Parks": drawParks,
-            //     "Trails": drawTrails,
-            //     "Town Zoning": drawZoning
-            // }
-
-
-            // Add function to each of the layer switches
-            $('#parcelSwitch').on('change', function() {
-                // access the target basemap
-                var checkValue = $(this).prop('checked');
-                //	console.log(parcelLayer);
-
-                if (checkValue) {
-                    // it's checked
-                    parcelLayer.addTo(map);
-                } else {
-                    map.removeLayer(parcelLayer);
-                    // unchecked
-                }
-            });
-            $('#zoningSwitch').on('change', function() {
-                // access the target basemap
-                var checkValue = $(this).prop('checked');
-                //	console.log(parcelLayer);
-
-                if (checkValue) {
-                    // it's checked
-                    zoningLayer.addTo(map);
-                } else {
-                    map.removeLayer(zoningLayer);
-                    // unchecked
-                }
-            });
-            $('#nyWetSwitch').on('change', function() {
-                // access the target basemap
-                var checkValue = $(this).prop('checked');
-                //	console.log(parcelLayer);
-
-                if (checkValue) {
-                    // it's checked
-                    wetlandsNYLayer.addTo(map);
-                } else {
-                    map.removeLayer(wetlandsNYLayer);
-                    // unchecked
-                }
+            // loop through basemap layers and remove any
+            basemapLayers.eachLayer(function(layer) {
+                basemapLayers.removeLayer(layer);
             });
 
-            $('#nwiWetSwitch').on('change', function() {
-                // access the target basemap
-                var checkValue = $(this).prop('checked');
-                //	console.log(parcelLayer);
+            // add the target basemap to the layerGroup
+            basemapLayers.addLayer(baseMaps[targetBasemap]);
+        })
 
-                if (checkValue) {
-                    // it's checked
-                    wetlandsNWILayer.addTo(map);
-                } else {
-                    map.removeLayer(wetlandsNWILayer);
-                    // unchecked
-                }
-            });
-            $('#parkSwitch').on('change', function() {
-                // access the target basemap
-                var checkValue = $(this).prop('checked');
-                //	console.log(parcelLayer);
+    })();
 
-                if (checkValue) {
-                    // it's checked
-                    parksLayer.addTo(map);
-                } else {
-                    map.removeLayer(parksLayer);
-                    // unchecked
-                }
-            });
-            $('#trailSwitch').on('change', function() {
-                // access the target basemap
-                var checkValue = $(this).prop('checked');
-                //	console.log(parcelLayer);
+    // empty object to hold all data
+    var data = {};
 
-                if (checkValue) {
-                    // it's checked
-                    trailsLayer.addTo(map);
-                } else {
-                    map.removeLayer(trailsLayer);
-                    // unchecked
-                }
-            });
+    // use promise to load all data
+    $.when(
+        $.getJSON("data/HalfmoonTrails.geojson", function(d) {
+            data.trails = d;
+        }),
+        $.getJSON("data/HalfmoonParcels2016.geojson", function(d) {
+            data.parcels = d;
+        }),
+        $.getJSON("data/NYSDEC_Wetlands.geojson", function(d) {
+            data.NYwetlands = d;
+        }),
+        $.getJSON("data/NWI_Wetlands.geojson", function(d) {
+            data.NWIwetlands = d;
+        }),
+        $.getJSON("data/HalfmoonParks.geojson", function(d) {
+            data.parks = d;
+        }),
+        $.getJSON("data/HalfmoonZoning.geojson", function(d) {
+            data.zoning = d;
+        }),
+        $.getJSON("data/SurroundingTowns.geojson", function(d) {
+            data.towns = d;
+        })
+    ).then(function() {
+        // when ready, you have it all here
+        console.log(data);
 
-            var searchControl = new L.Control.Search({
-                layer: parcelLayer,
-                propertyName: 'OWNER1',
-                circleLocation: false,
-                zoom: 16
-            });
-            searchControl.on('search_locationfound', function(e) {
-                    e.layer.setStyle({
-                        fillColor: 'white',
-                        color: 'white',
-                        fillOpacity: 0.5
-                    });
-                    if (e.layer._popup)
-                        e.layer.openPopup();
+        // sent to new function
+        drawThematicLayers(data)
+    });
 
-                })
-                .on('search_collapsed', function(e) {
-                    parcelLayer.eachLayer(function(layer) {
-                        parcelLayer.resetStyle(layer);
-                    });
-                });
+    function drawThematicLayers(data) {
 
-            map.addControl(searchControl);
-            // Call the getContainer routine.
-            var htmlObject = searchControl.getContainer();
-            // Get the desired parent node.
-            var a = document.getElementById('collapse2_search1');
+        // first create all leaflet layers and assign to ref
+        var trailsLayer = drawTrails(data.trails);
+        var parcelLayer = drawParcels(data.parcels);
+        var wetlandsNYLayer = drawWetlandsNY(data.NYwetlands);
+        var wetlandsNWILayer = drawWetlandsNWI(data.NWIwetlands);
+        var parksLayer = drawParks(data.parks);
+        var zoningLayer = drawZoning(data.zoning);
+        var surroundTowns = drawTowns(data.towns)
 
-            // append that node to the new parent, recursively searching out and re-parenting nodes.
-            function setParent(el, newParent) {
-                newParent.appendChild(el);
+        // now you can add/remove these layers from the map with a UI
+        // zoningLayer.addTo(map);
+        surroundTowns.addTo(map);
+
+        // var overlayMaps = {
+        //     "2016 Halfmoon Tax Parcels": drawParcels,
+        //     "NYS DEC Wetlands": drawWetlandsNY,
+        //     "NWI Wetlands": drawWetlandsNWI,
+        //     "Parks": drawParks,
+        //     "Trails": drawTrails,
+        //     "Town Zoning": drawZoning
+        // }
+
+
+        // Add function to each of the layer switches
+        $('#parcelSwitch').on('change', function() {
+            // access the target basemap
+            var checkValue = $(this).prop('checked');
+            //	console.log(parcelLayer);
+
+            if (checkValue) {
+                // it's checked
+                parcelLayer.addTo(map);
+            } else {
+                map.removeLayer(parcelLayer);
+                // unchecked
             }
-            setParent(htmlObject, a);
-            // console.log(searchControl.getContainer());
+        });
+        $('#zoningSwitch').on('change', function() {
+            // access the target basemap
+            var checkValue = $(this).prop('checked');
+            //	console.log(parcelLayer);
+
+            if (checkValue) {
+                // it's checked
+                zoningLayer.addTo(map);
+            } else {
+                map.removeLayer(zoningLayer);
+                // unchecked
+            }
+        });
+        $('#nyWetSwitch').on('change', function() {
+            // access the target basemap
+            var checkValue = $(this).prop('checked');
+            //	console.log(parcelLayer);
+
+            if (checkValue) {
+                // it's checked
+                wetlandsNYLayer.addTo(map);
+            } else {
+                map.removeLayer(wetlandsNYLayer);
+                // unchecked
+            }
+        });
+
+        $('#nwiWetSwitch').on('change', function() {
+            // access the target basemap
+            var checkValue = $(this).prop('checked');
+            //	console.log(parcelLayer);
+
+            if (checkValue) {
+                // it's checked
+                wetlandsNWILayer.addTo(map);
+            } else {
+                map.removeLayer(wetlandsNWILayer);
+                // unchecked
+            }
+        });
+        $('#parkSwitch').on('change', function() {
+            // access the target basemap
+            var checkValue = $(this).prop('checked');
+            //	console.log(parcelLayer);
+
+            if (checkValue) {
+                // it's checked
+                parksLayer.addTo(map);
+            } else {
+                map.removeLayer(parksLayer);
+                // unchecked
+            }
+        });
+        $('#trailSwitch').on('change', function() {
+            // access the target basemap
+            var checkValue = $(this).prop('checked');
+            //	console.log(parcelLayer);
+
+            if (checkValue) {
+                // it's checked
+                trailsLayer.addTo(map);
+            } else {
+                map.removeLayer(trailsLayer);
+                // unchecked
+            }
+        });
+
+        var searchControl = new L.Control.Search({
+            layer: parcelLayer,
+            propertyName: 'OWNER1',
+            circleLocation: false,
+            zoom: 16,
+            collapsed: false,
+        });
+        searchControl.on('search_locationfound', function(e) {
+                e.layer.setStyle({
+                    fillColor: 'white',
+                    color: 'white',
+                    fillOpacity: 0.5
+                });
+                if (e.layer._popup)
+                    e.layer.openPopup();
+
+            })
+            .on('search_collapsed', function(e) {
+                parcelLayer.eachLayer(function(layer) {
+                    parcelLayer.resetStyle(layer);
+                });
+            });
+
+        map.addControl(searchControl);
+        // Call the getContainer routine.
+        var htmlObject = searchControl.getContainer();
+        // Get the desired parent node.
+        var a = document.getElementById('collapse2_search1');
+
+        // append that node to the new parent, recursively searching out and re-parenting nodes.
+        function setParent(el, newParent) {
+            newParent.appendChild(el);
+        }
+        setParent(htmlObject, a);
+        // console.log(searchControl.getContainer());
 
         var searchControl = new L.Control.Search({
             layer: parcelLayer,
             propertyName: 'MAIL_1ADDR',
             circleLocation: false,
-            zoom: 16
+            zoom: 16,
+           collapsed: false
         });
         searchControl.on('search_locationfound', function(e) {
                 e.layer.setStyle({

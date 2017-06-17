@@ -34,6 +34,30 @@
 </head>
 
 <body>
+
+	<!-- Modal -->
+	<div id="loadModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Welcome to the Town of Halfmoon Community Viewer!</h4>
+				</div>
+				<div class="modal-body">
+					<p> This website is intended for informational and community exploration purposes only. <br>
+						Areas depicted within the map are approximate, are for illustration purposes only and do not take the place of a professional survey. </p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Enjoy your visit!</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
 	<!-- create top fixed panel with logo, Title, help and website link -->
 	<nav class="navbar navbar-custom navbar-fixed-top">
 		<div class="navbar-header">
@@ -47,84 +71,85 @@
 			</div>
 		</div>
 		<!-- Create help button modal -->
-			<button id="help" type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#helpModal">Help</button>
+		<button id="help" type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#helpModal">Help</button>
 
-				<button id="websiteURL"type="button" class="btn btn-info btn-sm pull-right" <a href="http://www.townofhalfmoon-ny.gov/">Town of Halfmoon Website</a></button>
+		<button id="websiteURL" type="button" class="btn btn-info btn-sm pull-right" <a href="http://www.townofhalfmoon-ny.gov/">Town of Halfmoon Website</a></button>
 
-			<!-- Modal -->
-			<div id="helpModal" class="modal fade" role="dialog">
-				<div class="modal-dialog">
+		<!-- Modal -->
+		<div id="helpModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
 
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Stuck on something? In need of assistnace? looking for more info?</h4>
-						</div>
-						<div class="modal-body">
-							<p>Some text in the modal.</p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Stuck on something? In need of assistnace? Looking for more info?</h4>
 					</div>
-
+					<div class="modal-body">
+						<p>Some text in the modal.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
 				</div>
+
 			</div>
-			<!-- create dropdown panels -->
-			<div class="panel-group" id="accordion">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">
+		</div>
+		<!-- create dropdown panels -->
+		<!-- create Layer Dropdown Panel -->
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-        <i class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;Layers</a>
+        <i class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;Layer Selection</a>
       </h4>
-					</div>
-					<!-- Top most panel - create on/off switches for all layers -->
-					<div id="collapse1" class="panel-collapse collapse">
-						<div class="panel-body">
-							<div class="checkbox pull-right clear-right">
-								<label>2016 Tax Parcels&nbsp;&nbsp;&nbsp;&nbsp;>
+				</div>
+				<!-- Top most panel - create on/off switches for all layers -->
+				<div id="collapse1" class="panel-collapse collapse">
+					<div class="panel-body">
+						<div class="checkbox pull-right clear-right">
+							<label>2016 Tax Parcels&nbsp;&nbsp;&nbsp;&nbsp;>
 		     <input id="parcelSwitch" type="checkbox" data-toggle="toggle"
 				 data-size="mini"
 				  data-style="slow"
 				 data-onstyle="success" />
 		   </label>
-							</div>
-							<div class="checkbox pull-right clear-right">
-								<label>Town Zoning&nbsp;&nbsp;&nbsp;&nbsp;>
+						</div>
+						<div class="checkbox pull-right clear-right">
+							<label>Town Zoning&nbsp;&nbsp;&nbsp;&nbsp;>
 		     <input id="zoningSwitch" type="checkbox" data-toggle="toggle"
 				 data-size="mini"
 				  data-style="slow"
 				 data-onstyle="success" />
 		   </label>
-							</div>
-							<div class="checkbox pull-right clear-right">
-								<label>NYS DEC Wetlands&nbsp;&nbsp;&nbsp;&nbsp;>
+						</div>
+						<div class="checkbox pull-right clear-right">
+							<label>NYS DEC Wetlands&nbsp;&nbsp;&nbsp;&nbsp;>
  				<input id="nyWetSwitch" type="checkbox" data-toggle="toggle"
  				data-size="mini"
  				 data-style="slow"
  				data-onstyle="success" />
  			</label>
-							</div>
-							<div class="checkbox pull-right clear-right">
-								<label>NWI Wetlands&nbsp;&nbsp;&nbsp;&nbsp;>
+						</div>
+						<div class="checkbox pull-right clear-right">
+							<label>NWI Wetlands&nbsp;&nbsp;&nbsp;&nbsp;>
 			 <input id="nwiWetSwitch" type="checkbox" data-toggle="toggle"
 			 data-size="mini"
 				data-style="slow"
 			 data-onstyle="success" />
 		 </label>
-							</div>
-							<div class="checkbox pull-right clear-right">
-								<label>Parks&nbsp;&nbsp;&nbsp;&nbsp;>
+						</div>
+						<div class="checkbox pull-right clear-right">
+							<label>Parks&nbsp;&nbsp;&nbsp;&nbsp;>
 			<input id="parkSwitch" type="checkbox" data-toggle="toggle"
 			data-size="mini"
 			 data-style="slow"
 			data-onstyle="success" />
 		</label>
-							</div>
-							<div class="checkbox pull-right clear-right">
-								<label>Trails&nbsp;&nbsp;&nbsp;&nbsp;>
+						</div>
+						<div class="checkbox pull-right clear-right">
+							<label>Trails&nbsp;&nbsp;&nbsp;&nbsp;>
 		 <input id="trailSwitch" type="checkbox" data-toggle="toggle"
 		 data-size="mini"
 			data-style="slow"
@@ -153,21 +178,39 @@
 					<div class="panel-heading">
 						<h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-        <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;Search</a>
+        <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;Address Search</a>
       </h4>
 	  			</div>
+				</div>
 					<div id="collapse2" class="panel-collapse collapse">
-						<div class="panel-body">Text?</div>
-						<div id="collapse2_search1"class="input-group">
-							<div class="panel-body">Text?</div>
-							<div class="panel-body">Text?</div>
-							<div id="collapse2_search2"class="input-group">
-								<div class="panel-body">Text?</div>
-					</div>
-				</div>
-				</div>
-				<!-- create third Collapsable panel -->
+						</div>
+						<!-- <div class="panel-body-search-main1">Property Address Search:
+							</div> -->
+							<div class="panel-body-search-direction">Begin with a street/house number. <br> Addresses will autofill.
+							</div>
+						<div id="collapse2_search2"class="input-group"></div>
+<!-- </div> -->
+
+				<!-- Create third drop down panel -->
 				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+				<i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;Property Owner Search</a>
+			</h4>
+					</div>
+					</div>
+							<!-- <div class="panel-body-search-main">Property Owner Search:
+								</div> -->
+								<div class="panel-body-search-direction">Begin search with LAST name first.<br> Names will autofill.
+								</div>
+							<div id="collapse2_search1"class="input-group">
+
+
+
+
+				<!-- create third Collapsable panel -->
+				<!-- <div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
@@ -176,15 +219,15 @@
 					</div>
 					<div id="collapse3" class="panel-collapse collapse">
 						<button type="button" class="btn btn-info" style="display: block; margin: 5px auto; width: 160px">Draw</button>
-						<button type="button" class="btn btn-primary" style="display: block; margin: 5px auto; width: 160px">Measure</button>
+						<button type="button" class="btn btn-primary" style="display: block; margin: 5px auto; width: 160px">Measure</button> -->
 						<!-- <a href="#" class="btn btn-info" role="button">Draw</a>
 <button type="button" class="btn btn-info">Measure</button>
 <input type="button" class="btn btn-info" value="Draw">
 <input type="submit" class="btn btn-info" value="Measure"> -->
-						<div class="panel-body">Text?</div>
+						<!-- <div class="panel-body">Text?</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 	</nav>
 
 

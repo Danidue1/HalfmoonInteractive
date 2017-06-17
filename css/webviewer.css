@@ -106,11 +106,34 @@ header {
     outline: none !important;
     /*border-color: #3d52c8 !important;*/
 }
-
+/*Help Modal*/
 .modal-backdrop {
     z-index: 1020;
 }
+/*Launch Modal*/
+.modal-content {
+  width: 500px;
+  font-family: 'Roboto', sans-serif;
+}
+.modal-header {
+  font-style: italic;
+  font-weight: bold;
+}
+.modal-footer{
+  padding: 2px;
+  /*width: 450px;*/
+}
+.modal-footer >p {
+  color: Blue;
 
+}
+.modal-footer .btn.btn-default{
+  background-color:#D3D3D3;
+  color: #3d52c8;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
 .navbar-custom .navbar-nav>li>a:hover, .navbar-custom .navbar-nav>li>a:focus, .navbar-custom .navbar-nav>.active>a:hover, .navbar-custom .navbar-nav>.active>a:focus, .navbar-custom .navbar-nav>.open>a {
     text-decoration: none;
     background-color: #6e76ed;
@@ -192,8 +215,8 @@ header {
 .panel-body {
     padding: 5px;
     height: auto;
-}
 
+}
 .basemap-button {
     width: 185px;
     clear: both;
@@ -221,21 +244,62 @@ header {
     /*color:#EFA600;*/
 }
 
-.leaflet-clickable{
-	position: relative;
-	color: "purple";
-	z-index: 2px
-}
 
 .leaflet-control-search {
-	
+	margin-left: 35px;
+
+
 }
 
 .leaflet-control-search .leaflet-control {
 
 }
 
-
  .leaflet-control .search-input {
+box-shadow: 'none';
+}
 
+input#searchtext9.search-input{
+  font-size: 13px;
+  font-family: 'Roboto', sans-serif;
+  width: 150px;
+  padding: 10px
+}
+.search-tip>li {
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  width: 150px;
+  padding: 10px
+}
+.leaflet-control-search.leaflet-control.search-exp {
+  box-shadow: none;
+  position: inherit;
+  margin: 10px;
+}
+.search-button {
+  padding: 10px;
+}
+
+.panel-body-search-main1{
+      padding: 5px;
+      margin-bottom: -3px;
+      height: auto;
+      font-size: 13px;
+      font-weight: bold;
+}
+.panel-body-search-main2{
+      padding: 5px;
+      margin-bottom: -3px;
+      margin-top: 10px;
+      height: auto;
+      font-size: 13px;
+      font-weight: bold;
+}
+/*Directive text for seac*/
+.panel-body-search-direction{
+      padding: 5px;
+      /*margin-top: -2px;*/
+      height: auto;
+      font-size: 11px;
+      font-style: italic;
 }
