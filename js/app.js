@@ -26,12 +26,12 @@
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         }).addTo(basemapLayers);
 
-        var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+        var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
             maxZoom: 20,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
-        var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             maxZoom: 20,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
@@ -48,21 +48,77 @@
             "Google Streets": googleStreets,
             "2014 NYS Aerials": nysdop2014
         }
+        // Add function to each of the layer switches
+        $('#streetSwitch').on('change', function() {
+            // access the target basemap
+            var checkValue = $(this).prop('checked');
+            //	console.log(parcelLayer);
+
+            if (checkValue) {
+                // it's checked
+                googleStreets.addTo(map);
+            } else {
+                map.removeLayer(googleStreets);
+                // unchecked
+              }
+          });
+          // Add function to each of the layer switches
+          $('#satSwitch').on('change', function() {
+              // access the target basemap
+              var checkValue = $(this).prop('checked');
+              //	console.log(parcelLayer);
+
+              if (checkValue) {
+                  // it's checked
+                  googleSat.addTo(map);
+              } else {
+                  map.removeLayer(googleSat);
+                  // unchecked
+                }
+            });
+            // Add function to each of the layer switches
+            $('#hybridSwitch').on('change', function() {
+                // access the target basemap
+                var checkValue = $(this).prop('checked');
+                //	console.log(parcelLayer);
+
+                if (checkValue) {
+                    // it's checked
+                    googleHybrid.addTo(map);
+                } else {
+                    map.removeLayer(googleHybrid);
+                    // unchecked
+                  }
+              });
+              // Add function to each of the layer switches
+              $('#nysSwitch').on('change', function() {
+                  // access the target basemap
+                  var checkValue = $(this).prop('checked');
+                  //	console.log(parcelLayer);
+
+                  if (checkValue) {
+                      // it's checked
+                      nysdop2014.addTo(map);
+                  } else {
+                      map.removeLayer(nysdop2014);
+                      // unchecked
+                    }
+                });
 
         // when user clicks on li
-        $('#basemap-ui li').click(function() {
-            // access the target basemap
-            var targetBasemap = $(this).attr('data-basemap');
-
-            // loop through basemap layers and remove any
-            basemapLayers.eachLayer(function(layer) {
-                basemapLayers.removeLayer(layer);
-            });
-
-            // add the target basemap to the layerGroup
-            basemapLayers.addLayer(baseMaps[targetBasemap]);
-        })
-
+    //     $('#basemap-ui li').click(function() {
+    //         // access the target basemap
+    //         var targetBasemap = $(this).attr('data-basemap');
+    //
+    //         // loop through basemap layers and remove any
+    //         basemapLayers.eachLayer(function(layer) {
+    //             basemapLayers.removeLayer(layer);
+    //         });
+    //
+    //         // add the target basemap to the layerGroup
+    //         basemapLayers.addLayer(baseMaps[targetBasemap]);
+    //     })
+    //
     })();
 
     // empty object to hold all data
