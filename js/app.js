@@ -10,9 +10,9 @@
     });
 
 // Launch for Modal Disclaimer
-    // $(window).on('load',function(){
-    //      $('#loadModal').modal('show');
-    //  });
+    $(window).on('load',function(){
+         $('#loadModal').modal('show');
+     });
 
     // encapsulate basemap code in IIFE (Immediately Invoked Function Expression)
     (function() {
