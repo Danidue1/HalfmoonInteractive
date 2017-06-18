@@ -395,29 +395,37 @@
     function drawTrails(data) {
         var trailsLayer = L.geoJson(data, {
             style: function(feature) {
-                if (feature.properties.Type_2017 === "Off Road Trail (Constructed)") {
-                    return {
-                        weight: 4.5,
-                        color: '#dd1c77',
-                        opacity: 1
-                    };
-                };
-                if (feature.properties.Type_2017 === "On Road (Designated & Non Designated)") {
-                    return {
-                        weight: 4.5,
-                        color: 'red',
-                        opacity: 1
-                    };
-                };
-                if (feature.properties.Type_2017 === "Off Road Trail (Proposed / Potential)") {
-                    return {
-                        color: '#dd1c77',
-                        dashArray: "5 10",
-                        weight: 4.5,
-                        opacity: 1
-                    };
-                };
-            },
+              return {
+                color: '#dd1c77',
+                dashArray: "5 10",
+                weight: 4.5,
+                opacity: 1
+
+              };
+          },
+            //     if (feature.properties.Type_2017 === "Off Road Trail (Constructed)") {
+            //         return {
+            //             weight: 4.5,
+            //             color: '#dd1c77',
+            //             opacity: 1
+            //         };
+            //     };
+            //     if (feature.properties.Type_2017 === "On Road (Designated & Non Designated)") {
+            //         return {
+            //             weight: 4.5,
+            //             color: 'red',
+            //             opacity: 1
+            //         };
+            //     };
+            //     if (feature.properties.Type_2017 === "Off Road Trail (Proposed / Potential)") {
+            //         return {
+            //             color: '#dd1c77',
+            //             dashArray: "5 10",
+            //             weight: 4.5,
+            //             opacity: 1
+            //         };
+            //     };
+            // },
             onEachFeature: function(feature, layer) {
                 var popuptext = feature.properties.Trail_Name
                 layer.bindPopup(popuptext, customPopupOptions)

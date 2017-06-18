@@ -176,7 +176,8 @@ header {
 /* Start Collapsable Panels*/
 .panel-group {
     position: absolute;
-    width: 260px;
+    display: inline-block;
+    width: auto;
     padding-top: 45px;
     margin-right: 0px;
     margin-top: 50px;
@@ -270,7 +271,7 @@ div.leaflet-control-search.search-exp.leaflet-control .search-tooltip {
       font-size: 13px;
       font-weight: bold;
 }
-/*Directive text for seac*/
+/*Directive text for search*/
 .panel-body-search-direction{
       padding: 5px;
       /*margin-top: -2px;*/
@@ -280,9 +281,64 @@ div.leaflet-control-search.search-exp.leaflet-control .search-tooltip {
 }
 
 .checkbox.pull-right.clear-right{
-  /*margin-left: 55px;*/
-  margin-bottom: -8px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  margin-right: 5px;
 }
+
+.checkbox.pull-right.clear-right>span>label1 {
+  margin-right: 17px;
+}
+.checkbox.pull-right.clear-right>span>label2 {
+  /*margin-right: 28px;*/
+}
+.checkbox.pull-right.clear-right>span>label3 {
+  margin-right: 34px;
+}
+.checkbox.pull-right.clear-right>span>label4 {
+  margin-right: 90px;
+}
+.checkbox.pull-right.clear-right>span>label5 {
+  margin-right: 91px;
+}
+.checkbox.pull-right.clear-right>span>label6 {
+  margin-right: 43px;
+  margin-top: 15px
+}
+.checkbox.pull-right.clear-right>span>labelA {
+  margin-right: 43px;
+  margin-top: 15px
+}
+.checkbox.pull-right.clear-right>span>labelB {
+  margin-right: 43px;
+  margin-top: 15px
+}
+.checkbox.pull-right.clear-right>span>labelC {
+  margin-right: 44px;
+  margin-top: 15px
+}
+.checkbox.pull-right.clear-right>span>labelD {
+  margin-right: 23px;
+  margin-top: 15px
+}
+
 symbol#my-icon svg{
-  margin-top: -10px
+  margin-top: -10px;
+  position: absolute;
+}
+symbol#my-trailicon svg{
+  margin-top: -10px;
+  position: absolute;
+  margin-right: 100px
+}
+/*path.leaflet-clickable{
+  stroke: Red;
+  stroke-opacity:1;
+  fill: Red;
+  stroke-width:4
+}*/
+
+.switch-margin {
+  margin-top:-4px;
+  margin-bottom: -7px;
 }
