@@ -2,7 +2,7 @@
     L.mapbox.accessToken = 'pk.eyJ1IjoiZGFuaWR1ZTEiLCJhIjoiY2oxaDhid2E1MDAzejJxcGRqdmRkNzZjaCJ9.iF4gj5b98voRypvuygAxGw';
 //Create Map
     var map = L.mapbox.map('map', null, {
-        'center': [42.876301, -73.727470],
+        'center': [42.813706, -73.732218],
         'zoom': 12,
         'dragging': true,
         'zoomControl': true,
@@ -701,7 +701,7 @@
                     this.setStyle({
                         color: 'black',
                         opacity: 1,
-                        weight: 2,
+                        weight: 1.5,
                     }).bringToFront();
                 });
                 //change visial affordance back to original outline color
