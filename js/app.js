@@ -10,9 +10,9 @@
     });
 
 // Launch for Modal Disclaimer
-    $(window).on('load',function(){
-         $('#loadModal').modal('show');
-     });
+    // $(window).on('load',function(){
+    //      $('#loadModal').modal('show');
+    //  });
 
     // encapsulate basemap code in IIFE (Immediately Invoked Function Expression)
     (function() {
@@ -21,17 +21,17 @@
         var basemapLayers = L.layerGroup().addTo(map);
 
         //Add a basemap layers
-        var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        var googleStreets = L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
             maxZoom: 20,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         }).addTo(basemapLayers);
 
-        var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        var googleSat = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
             maxZoom: 20,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
-        var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+        var googleHybrid = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             maxZoom: 20,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
@@ -104,6 +104,37 @@
                       // unchecked
                     }
                 });
+
+$('#streetSwitch').prop('checked', true).change();
+
+$('#streetSwitch').change(function(){
+	if ($(this).is(':checked')) {
+		$('#satSwitch').bootstrapToggle('off') &
+		$('#nysSwitch').bootstrapToggle('off') &
+		$('#hybridSwitch').bootstrapToggle('off')
+	}
+});
+$('#satSwitch').change(function(){
+	if ($(this).is(':checked')) {
+		$('#streetSwitch').bootstrapToggle('off') &
+		$('#nysSwitch').bootstrapToggle('off') &
+		$('#hybridSwitch').bootstrapToggle('off')
+	}
+});
+$('#nysSwitch').change(function(){
+	if ($(this).is(':checked')) {
+		$('#satSwitch').bootstrapToggle('off') &
+		$('#streetSwitch').bootstrapToggle('off') &
+		$('#hybridSwitch').bootstrapToggle('off')
+	}
+});
+$('#hybridSwitch').change(function(){
+	if ($(this).is(':checked')) {
+		$('#streetSwitch').bootstrapToggle('off') &
+		$('#nysSwitch').bootstrapToggle('off') &
+		$('#satSwitch').bootstrapToggle('off')
+	}
+});
 
         // when user clicks on li
     //     $('#basemap-ui li').click(function() {
@@ -263,12 +294,22 @@
             }
         });
 
+		$('#parcelSwitch').prop('checked', true).change();
+
         var searchControl = new L.Control.Search({
             layer: parcelLayer,
             propertyName: 'OWNER1',
             circleLocation: false,
             zoom: 16,
             collapsed: false,
+			marker: {
+            icon: new L.Icon({iconUrl:'https://unpkg.com/leaflet@1.0.3/dist/images/marker-icon.png', iconSize: [18,32]}),
+            circle: {
+                radius: 0,
+                color: '#0a0',
+                opacity: 1
+                }
+            }
         });
         searchControl.on('search_locationfound', function(e) {
                 e.layer.setStyle({

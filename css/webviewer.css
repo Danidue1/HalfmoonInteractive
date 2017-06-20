@@ -140,7 +140,7 @@ header {
 /*Start: Popup look and feel*/
 .custom .leaflet-popup-content-wrapper {
     background: white;
-    position: relative;
+    position: absolute;
     color: #3d52c8;
     font-size: 10px;
     line-height: 24px;
@@ -167,7 +167,13 @@ header {
 }
 
 .custom .leaflet-popup-tip {
-    position: relative;
+	width: 0;
+    height: 0;
+    margin: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    box-shadow: none;
 }
 
 .custom .leaflet-popup-close-button {}
