@@ -293,8 +293,11 @@ $('#hybridSwitch').change(function(){
                 // unchecked
             }
         });
-
+//turn just the parcel layer on byt default.
 		$('#parcelSwitch').prop('checked', true).change();
+
+//scale tolerance for parcels
+    // map.on('zoomend ', function(e) { if ( map.getZoom() < 13 ){ map.removeLayer( parcelLayer )} else if ( map.getZoom() >= 13 ){ map.addLayer( parcelLayer )} })
 
         var searchControl = new L.Control.Search({
             layer: parcelLayer,
@@ -423,9 +426,9 @@ $('#hybridSwitch').change(function(){
                     color: 'purple',
                     weight: 1,
                     fillOpacity: 0.5,
-                    fillColor: 'purple'
+                    fillColor: 'purple',
                 };
-            }
+          }
         });
 
         return nysdecLayer;
