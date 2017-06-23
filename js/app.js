@@ -1,12 +1,19 @@
 (function() {
     L.mapbox.accessToken = 'pk.eyJ1IjoiZGFuaWR1ZTEiLCJhIjoiY2oxaDhid2E1MDAzejJxcGRqdmRkNzZjaCJ9.iF4gj5b98voRypvuygAxGw';
 //Create Map
+var bounds = [
+    [42.774179, -73.809431], // Southwest coordinates
+    [42.943479, -73.624375]  // Northeast coordinates
+];
     var map = L.mapbox.map('map', null, {
         'center': [42.813706, -73.732218],
         'zoom': 12,
         'dragging': true,
         'zoomControl': true,
-        'scrollWheelZoom': true
+        'scrollWheelZoom': true,
+		'maxZoom':19,
+		'minZoom': 12,
+		'maxBounds': bounds
     });
 
 // Launch for Modal Disclaimer
@@ -293,11 +300,8 @@ $('#hybridSwitch').change(function(){
                 // unchecked
             }
         });
-//turn just the parcel layer on byt default.
-		$('#parcelSwitch').prop('checked', true).change();
 
-//scale tolerance for parcels
-    // map.on('zoomend ', function(e) { if ( map.getZoom() < 13 ){ map.removeLayer( parcelLayer )} else if ( map.getZoom() >= 13 ){ map.addLayer( parcelLayer )} })
+		$('#parcelSwitch').prop('checked', true).change();
 
         var searchControl = new L.Control.Search({
             layer: parcelLayer,
@@ -396,8 +400,9 @@ $('#hybridSwitch').change(function(){
                 };
             },
             onEachFeature: function(feature, layer) {
-                var popuptext = '<b>' + "Tax Pacel ID: " + layer.feature.properties.PRINT_KEY + '</b><br />' + '<b>' + "Parcel Address: " + layer.feature.properties.PROP_ADDR + '</b><br />' + '<b>' + "Owner Name: " + layer.feature.properties.OWNER1 + '</b><br />'
+                var popuptext = '<b>' + "Tax Pacel ID: " + layer.feature.properties.PRINT_KEY + '</b><br />' + '<b>' + "Parcel Address: " + layer.feature.properties.PropAddrLo + '</b><br />' + '<b>' + "Owner Name: " + layer.feature.properties.OWNER1 + '</b><br />'
                 layer.bindPopup(popuptext, customPopupOptions)
+
 
                 layer.on('mouseover', function() {
                     //set visual affordance to show yellow outlined counties on mouseover
@@ -427,10 +432,10 @@ $('#hybridSwitch').change(function(){
                     weight: 1,
                     fillOpacity: 0.5,
                     fillColor: 'purple',
+					interactive: false
                 };
-          }
+            }
         });
-
         return nysdecLayer;
     }
 
@@ -442,7 +447,8 @@ $('#hybridSwitch').change(function(){
                     color: '#7fcdbb',
                     weight: 1,
                     fillOpacity: 0.5,
-                    fillColor: '#7fcdbb'
+                    fillColor: '#7fcdbb',
+					interactive: false
                 };
             }
         })
